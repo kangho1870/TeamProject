@@ -1,0 +1,124 @@
+.searchBox {
+    display: flex;
+    position: sticky;
+    top: 0px;
+
+    width: 100%;
+    height: 60px;
+
+    align-items: center;
+    padding: 6px 24px 6px 16px;
+    z-index: 260;
+}
+
+.backBtn {
+    padding: 6px;
+    border: none;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+}
+
+.searchInputBox {
+    position: relative;
+    width: 100%;
+    margin-left: 16px;
+}
+
+.searchInput {
+    font-weight: 400;
+    font-size: 18px;
+    background: rgb(241, 243, 246);
+    color: rgb(61, 69, 81);
+    border: none;
+    height: 48px;
+    width: 100%;
+    padding: 0px 48px 0px 16px;
+    border-radius: 8px;
+}
+
+.searchInputBtn {
+    display: flex;
+    position: absolute;
+    right: 12px;
+    border: none;
+    top: 25%;
+    transform: translate(0px -50%);
+    padding: 6px;
+    background: none;
+}
+
+.selectSubMenu {
+    position: sticky;
+    display: flex;
+    overflow: hidden;
+    padding: 2px 0px 2px 5px;
+    z-index: 10;
+    background-color: rgb(255, 255, 255);
+    top: 50px;
+}
+
+.filterBox {
+    padding: 12px;
+}
+
+.filterBtn {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgb(0, 10, 222);
+    background-color: rgb(230, 242, 250);
+    border-radius: 50%;
+    color: rgb(0, 10, 222);
+}
+
+.filterBtnBox {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: scroll hidden;
+    gap: 8px;
+    padding-left: 12px;
+    padding-right: 24px;
+    border-left: 1px solid rgb(233, 225, 226);
+}
+
+.filterBtnBox::-webkit-scrollbar {
+    display: none;
+}
+
+.detailfilterBtnBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 14px;
+    height: 36px;
+    border-radius: 40px;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgb(61, 69, 81);
+    background-color: rgb(245, 246, 247);
+    border: 1px solid rgb(245, 246, 247);
+}
+
+.menuDown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 16px;
+}
+
+.placeBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 14px;
+    height: 36px;
+    border-radius: 40px;
+    font-weight: 400;
+    font-size: 14px;
+    border: 1px solid rgb(0, 10, 222);
+    background-color: rgb(230, 242, 250);
+    color: rgb(0, 10, 222);
+}
