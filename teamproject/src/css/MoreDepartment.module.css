@@ -1,0 +1,84 @@
+span {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(113, 118, 122);
+    margin-top: 2px;
+}
+
+img {
+    box-sizing: border-box;
+    display: inline-block;
+    overflow: hidden;
+    width: 38px;
+    height: 38px;
+    background: none;
+    position: relative;
+}
+
+.moreDepartmentModal {
+    display: flex;
+    justify-content: center;
+
+    align-items: flex-end;
+
+    z-index: 610;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.moreDepartmentModalBox {
+    max-width: 560px;
+    width: 100%;
+    padding-top: 12px;
+    border-radius: 20px 20px 0px 0px;
+    background-color: white;
+}
+
+.moreDepartmentBtnBox {
+    width: 560px;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 12px 28px;
+}
+
+.departmentSelect {
+    font-weight: 600;
+    font-size: 20px;
+    color: rgb(45, 46, 47);
+    padding: 0px 12px;
+    margin-bottom: 16px;
+}
+
+.departmentUl {
+    display: flex;
+    flex-direction: column;
+    max-height: 610px;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.departmentUl::-webkit-scrollbar {
+    display: none;
+}
+
+.departmentLi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 12px;
+}
+
+.departmentTitleBox {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    font-size: 18px;
+    color: rgb(28, 29, 31);
+}
+

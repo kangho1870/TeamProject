@@ -1,0 +1,84 @@
+
+.container {
+    display: flex;
+}
+  
+.categoryNav {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    border-left: 1px solid rgb(237, 239, 240);
+    align-items: center;
+}
+
+.logoBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    width: 296px;
+    height: 90px;
+}
+
+.navBox {
+    width: 100%;
+}
+
+.logo {
+    font-size: 27px;
+    color: rgb(46, 128, 222);
+}
+
+.navList {
+    margin: 0px;
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    width: 272px;
+    height: 48px;
+}
+
+.list:hover {
+    background-color: rgb(247, 249, 250);;
+}
+
+.btnBox {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 12px;
+    align-items: center;
+}
+
+.loginBtn {
+    margin-bottom: 8px;
+    border-radius: 8px;
+    border: none;
+    width: 248px;
+    height: 40px;
+    background-color: rgb(230, 242, 250);
+    font-weight: 500;
+    text-align: center;
+}
+
+.userLoginBtn {
+    color: rgb(0, 10, 222);
+}
+
+.hospitalLoginBtn {
+    color: rgb(0, 10, 222);
+}
+
+.search {
+    width: 78.2px;
+    height: 42px;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid rgb(223, 225, 226);
+    font-weight: 500;
+    font-size: 14px;
+}
