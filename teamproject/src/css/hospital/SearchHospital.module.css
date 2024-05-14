@@ -1,0 +1,210 @@
+.mainContextTop {
+    width: 100%;
+    height: 100%;
+    border-left: 1px solid rgb(237, 239, 240);
+    border-right: 1px solid rgb(237, 239, 240);;
+  }
+  
+  .mainNavSmall {
+    display: flex;
+    font-size: 13px;
+    font-weight: 400;
+    color: #8d9297;
+    padding: 24px 24px 0px;
+  }
+  
+  .smallNav {
+    margin-right: 5px;
+  }
+  
+  .mainTitleBox {
+    padding: 0px 24px;
+  }
+  
+  .mainTitle {
+    font-size: 22px;
+    color: #1c1d1f;
+  }
+  
+  .categoryBtnBox {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    width: 100%;
+    gap: 8px;
+    padding: 0px 35px;
+    max-height: 152px;
+    margin-top: 14px;
+    margin-bottom: 24px;
+  }
+  
+  .departmentBox {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .titleInfo {
+    margin: 12px 0px 0px;
+    padding: 0px 24px;
+    font-size: 13px;
+    color: #71767a;
+  }
+  
+  .titleInfo2 {
+    padding: 0px 24px;
+    font-size: 19px;
+    color: #3d4551;
+  }
+  
+  .categoryBtns {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+    width: 170px;
+    height: 70px;
+    backdrop-filter: blur(2px);
+    background-color: rgb(243, 245, 245);
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .departmentImage {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+  }
+  
+  .departmentMoreBtn {
+    width: 100%;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 24px;
+    color: rgb(113, 118, 122);
+    border: none;
+    border-top: 1px solid rgb(237, 239, 240);
+    border-bottom: 1px solid rgb(237, 239, 240);
+    padding: 16px 0px;
+    justify-content: center;
+    background-color: transparent;
+  }
+  
+  .mainContextBottom {
+    width: 100%;
+  }
+  
+  .bottomFastSearchBox {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .bottomTitle {
+    margin: 32px 0px 0px;
+    padding: 0px 24px;
+    font-size: 19px;
+    color: #3d4551;
+  }
+  
+  .bottomFastSearchCategory {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    gap: 8px;
+    margin: 12px 0px 32px;
+    padding: 0px 24px;
+    max-height: 104px;
+    cursor: pointer;
+  }
+  
+  .boottomFastSearchCategorys {
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(0, 10, 222);
+    background: rgb(230, 242, 250);
+    height: 48px;
+    padding: 0px 20px;
+    align-items: center;
+    border-radius: 8px;
+  }
+  
+  .bottomSearchArea {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(245, 246, 247);
+    padding: 44px 24px 74px;
+  }
+  
+  .bottomSearchAreaBox {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .bottomSearchInputBox {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 48px;
+  }
+  
+  .bottomSearchBtn {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background-color: transparent;
+  }
+  
+  .bottomSearchInput {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0px 48px 0px 16px;
+    height: 48px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-weight: 500;
+    font-size: 16px;
+    color: rgb(86, 92, 101);
+  }
+  
+  .trending {
+    font-weight: 500;
+    font-size: 14px;
+    color: rgb(141, 146, 151);
+    margin-top: 20px;
+  }
+  
+  .trendingTitle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-height: 112px;
+    margin-top: 14px;
+    padding: 0px;
+  }
+  
+  .trendingTitles {
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 14px;
+    color: rgb(86, 92, 101);
+    background-color: rgb(237, 239, 240);
+    align-items: center;
+    height: 32px;
+    padding: 0px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
