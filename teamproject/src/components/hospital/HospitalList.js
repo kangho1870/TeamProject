@@ -1,4 +1,4 @@
-import styles from "../css/HospitalList.module.css";
+import styles from "../../css/hospital/HospitalList.module.css";
 
 function HospitalList() {
     return (
@@ -7,7 +7,7 @@ function HospitalList() {
                 <div>
                     <ul className={styles.hospitalListUl}>
                         <div role="button">
-                            <a href="/hospital/1">
+                            <a href="/hospitals/1">
                                 <li className={styles.hospitalListLi}>
                                     <div className={styles.hospitalListDetailBox}>
                                         <div className={styles.hospitalListDetail}>

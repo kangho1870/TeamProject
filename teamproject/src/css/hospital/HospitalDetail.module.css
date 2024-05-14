@@ -1,0 +1,242 @@
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.mainTextContext {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.hospitalTitleArea {
+    position: relative;
+    padding: 32px 0px 16px;
+    border-bottom: 10px solid rgb(237, 239, 240);
+    border-left: 1px solid rgb(237, 239, 240);
+    border-right: 1px solid rgb(237, 239, 240);
+}
+
+.hospitalTitleBox {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.hospitalTitle {
+    font-weight: 700;
+    font-size: 22px;
+    padding: 0px 24px;
+}
+
+.hospitalTitleBoxUl {
+    display: flex;
+    overflow-x: scroll;
+    padding: 0px 24px;
+}
+
+.hospitalTitleBoxUlDiv {
+    padding: 7px 12px;
+    background-color: rgb(247, 249, 250);
+    margin-right: 8px;
+    border-radius: 8px;
+}
+
+.hospitalTitleContents {
+    font-weight: 500;
+    font-size: 13px;
+    color: rgb(45, 46, 47);
+}
+
+.hospitalArea {
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    padding: 44px 0px 24px;
+    border-bottom: 10px solid rgb(237, 239, 240);
+    border-left: 1px solid rgb(237, 239, 240);
+    border-right: 1px solid rgb(237, 239, 240);
+}
+
+.hospitalTimeTitleBox {
+    display: flex;
+    align-items: center;
+    margin: 0px 24px 12px;
+}
+
+.hospitalSubTitle {
+    font-weight: 700;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    margin-right: 12px;
+}
+
+.hospitalTimeNoticeBox {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 14px;
+    color: rgb(113, 118, 122);
+    padding-bottom: 6px;
+}
+
+.hospitalBtn {
+    font-weight: 500;
+    font-size: 12px;
+    padding: 7px 12px;
+    border-radius: 8px;
+    margin-left: auto;
+    color: rgb(0, 10, 222);
+    background-color: rgb(230, 242, 250);
+    border: none;
+}
+
+.hospitalTimeBoxArea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 24px;
+    background-color: rgb(247, 249, 250);
+    border-radius: 12px;
+}
+
+.hospitalTodayTimeBox {
+    display: flex;
+    flex-direction: column;
+    padding: 22px 24px;
+    flex: 1 1 0%;
+}
+
+.hospitalTimeSubTitle {
+    font-weight: 700;
+    font-size: 14px;
+    color: rgb(45, 46, 47);
+    margin-bottom: 2px;
+}
+
+.hospitalTimeSubTitleSpan {
+    font-weight: 400;
+    font-size: 16px;
+    color: rgb(28, 29, 31);
+}
+
+.hospitalDepartmentTitleBox {
+    display: flex;
+    align-items: center;
+    margin: 0px 24px;
+    padding: 3px 0px;
+}
+
+.hospitalDepartmentUl {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 16px;
+    padding: 0px 24px;
+}
+
+.hospitalDepartmentLi {
+    font-weight: 500;
+    font-size: 13px;
+    color: rgb(45, 46, 47);
+    background-color: rgb(251, 252, 253);
+    border: 1px solid rgb(223, 225, 226);
+    display: flex;
+    align-items: center;
+    padding: 3px 8px;
+    border-radius: 8px;
+}
+
+.hospitalLocationBox {
+    display: flex;
+    align-items: center;
+    margin: 0px 24px;
+    padding: 3px 0px;
+}
+
+.hospitalLocationDetailBox {
+    display: flex;
+    flex-direction: column;
+    margin: 12px 0px 0px;
+}
+
+.hospitalLocationContentBox {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin: 0px 24px 16px;
+}
+
+.hospitalLocationContentSpan {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: keep-all;
+    color: rgb(28, 29, 31);
+    margin-right: 16px;
+}
+
+.hospitalLocationMap {
+    margin: 0px 24px 8px;
+    max-height: 354px;
+    border-radius: 16px;
+    overflow: hidden;
+    height: calc(-22.1538px + 46.1538vw);
+}
+
+.hospitalMap {
+    width: 100%;
+    height: 100%;
+}
+
+.hospitalPhoneArea {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin: 0px 24px;
+    padding: 3px 0px;
+}
+
+.hospitalPhoneBox {
+    margin: 12px 24px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.hospitalPhoneSpan {
+    font-weight: 500;
+    font-size: 14px;
+    color: rgb(28, 29, 31);
+    margin-right: 16px;
+}
+
+.hospitalAppointment {
+    position: sticky;
+    z-index: 100;
+    bottom: 0px;
+    width: 100%;
+}
+
+.hospitalAppointmentBtnBox {
+    background-color: transparent;
+    padding: 0px 24px 16px;
+}
+
+.hospitalAppointmentBtn {
+    font-weight: 600;
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(55, 137, 191);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 24px;
+    border-radius: 12px;
+    width: 100%;
+    border: none;
+}
