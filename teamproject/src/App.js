@@ -1,5 +1,17 @@
-import logo from './logo.svg';
+import React from 'react';
+import styled from 'styled-components';
 import './App.css';
+<<<<<<< HEAD
+import {} from 'react-router-dom';
+import Community from './community/community';
+
+
+function App() {
+  return (
+    <div className="App"> 
+    
+      </div>    
+=======
 import Category from './components/common/Category';
 import { Route, Router, Routes } from 'react-router-dom';
 import SearchHospital from './routes/hospital/SearchHospital';
@@ -15,7 +27,9 @@ function App() {
         <Route path='hospitals/:hospitalId' element={<HospitalDetail></HospitalDetail>}></Route>
       </Routes>
     </>
+>>>>>>> 71956c33dd1a4be12170d2da1ef6e78da125fc19
   );
 }
+
 
 export default App;
