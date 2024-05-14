@@ -1,8 +1,8 @@
-import styles from '../css/MoreDepartment.module.css';
+import styles from '../../css/hospital/MoreDepartment.module.css';
 
-function MoreDepartment(props) {
+function MoreDepartment() {
     return (
-        <div id="modal" onClick={props.closeModal}>
+        <>
             <div className={styles.moreDepartmentModal}>
                 <div className={styles.moreDepartmentModalBox}>
                     <div className={styles.moreDepartmentBtnBox}>
@@ -15,7 +15,7 @@ function MoreDepartment(props) {
                                 </div>
                                 <div>
                                     <span>
-                                        <img src={require('../department-img/피부과.png')}></img>
+                                        <img src={require('../../imgs/department-img/피부과.png')}></img>
                                     </span>
                                 </div>
                             </li>
@@ -26,7 +26,7 @@ function MoreDepartment(props) {
                                 </div>
                                 <div>
                                     <span>
-                                        <img src={require('../department-img/피부과.png')}></img>
+                                        <img src={require('../../imgs/department-img/피부과.png')}></img>
                                     </span>
                                 </div>
                             </li>
@@ -37,7 +37,7 @@ function MoreDepartment(props) {
                                 </div>
                                 <div>
                                     <span>
-                                        <img src={require('../department-img/피부과.png')}></img>
+                                        <img src={require('../../imgs/department-img/피부과.png')}></img>
                                     </span>
                                 </div>
                             </li>
@@ -48,7 +48,7 @@ function MoreDepartment(props) {
                                 </div>
                                 <div>
                                     <span>
-                                        <img src={require('../department-img/피부과.png')}></img>
+                                        <img src={require('../../imgs/department-img/피부과.png')}></img>
                                     </span>
                                 </div>
                             </li>
@@ -59,7 +59,7 @@ function MoreDepartment(props) {
                                 </div>
                                 <div>
                                     <span>
-                                        <img src={require('../department-img/피부과.png')}></img>
+                                        <img src={require('../../imgs/department-img/피부과.png')}></img>
                                     </span>
                                 </div>
                             </li>
@@ -70,7 +70,7 @@ function MoreDepartment(props) {
                                 </div>
                                 <div>
                                     <span>
-                                        <img src={require('../department-img/피부과.png')}></img>
+                                        <img src={require('../../imgs/department-img/피부과.png')}></img>
                                     </span>
                                 </div>
                             </li>
@@ -81,7 +81,7 @@ function MoreDepartment(props) {
                                 </div>
                                 <div>
                                     <span>
-                                        <img src={require('../department-img/피부과.png')}></img>
+                                        <img src={require('../../imgs/department-img/피부과.png')}></img>
                                     </span>
                                 </div>
                             </li>
@@ -92,7 +92,7 @@ function MoreDepartment(props) {
                                 </div>
                                 <div>
                                     <span>
-                                        <img src={require('../department-img/피부과.png')}></img>
+                                        <img src={require('../../imgs/department-img/피부과.png')}></img>
                                     </span>
                                 </div>
                             </li>
@@ -103,7 +103,7 @@ function MoreDepartment(props) {
                                 </div>
                                 <div>
                                     <span>
-                                        <img src={require('../department-img/피부과.png')}></img>
+                                        <img src={require('../../imgs/department-img/피부과.png')}></img>
                                     </span>
                                 </div>
                             </li>
@@ -111,7 +111,7 @@ function MoreDepartment(props) {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

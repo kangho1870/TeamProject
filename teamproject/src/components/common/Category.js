@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../css/Category.module.css';
+import styles from '../../css/common/Category.module.css'
 import { Outlet } from 'react-router-dom';
 
 function Category() {

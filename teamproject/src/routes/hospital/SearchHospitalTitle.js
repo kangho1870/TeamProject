@@ -1,8 +1,8 @@
-import face from '../department-img/피부과.png';
-import Category from '../components/Category';
-import styles from '../css/SearchHospital.module.css';
-import HospitalStyles from '../css/SearchHospitalTitle.module.css';
-import HospitalList from '../components/HospitalList';
+import face from '../../imgs/department-img/피부과.png'
+import Category from "../../components/common/Category";
+import styles from '../../css/hospital/SearchHospital.module.css';
+import HospitalStyles from '../../css/hospital/SearchHospitalTitle.module.css';
+import HospitalList from '../../components/hospital/HospitalList';
 function SearchHospital() {
 
     return (
@@ -24,7 +24,7 @@ function SearchHospital() {
                             {">"}
                         </div>
                         <div role="button" className={styles.smallNav}>
-                            <a href="/hospitals"><p>검색 결과</p></a>
+                            <a href="/hospitals/search?"><p>검색 결과</p></a>
                         </div>
                     </div>
                     <div className={HospitalStyles.searchBox}>

@@ -67,8 +67,9 @@
     width: 170px;
     height: 70px;
     backdrop-filter: blur(2px);
-    background-color: rgb(247, 249, 250);
+    background-color: rgb(243, 245, 245);
     border-radius: 8px;
+    cursor: pointer;
   }
   
   .departmentImage {
@@ -115,6 +116,7 @@
     margin: 12px 0px 32px;
     padding: 0px 24px;
     max-height: 104px;
+    cursor: pointer;
   }
   
   .boottomFastSearchCategorys {
@@ -204,4 +206,5 @@
     height: 32px;
     padding: 0px 12px;
     border-radius: 20px;
+    cursor: pointer;
   }

@@ -1,17 +1,20 @@
-import face from '../department-img/피부과.png';
-import Category from '../components/Category';
-import styles from '../css/SearchHospital.module.css';
-import MoreDepartment from '../components/MoreDepartment';
+import face from '../../imgs/department-img/피부과.png'
+import Category from "../../components/common/Category";
+import styles from '../../css/hospital/SearchHospital.module.css';
+import MoreDepartment from '../../components/hospital/MoreDepartment';
 import { useEffect, useRef, useState } from 'react';
 
 function SearchHospital() {
 
     const [more, setMore] = useState(false);
+    const [test] = useState(0); // useEffect 렌더링 test
 
     const closeModal = () => {
         setMore(false)
     }
-
+    useEffect(() => { // useEffect 렌더링 test
+        
+    }, [test])
     return (
         <>
             <div className='container'>
@@ -115,7 +118,7 @@ function SearchHospital() {
                             </li>
                             <li className={styles.categoryBtns}>
                                 <span>
-                                    <img alt="피부과" src={require('../department-img/피부과.png')} className={styles.departmentImage}></img>
+                                    <img alt="피부과" src={require('../../imgs/department-img/피부과.png')} className={styles.departmentImage}></img>
                                 </span>
                                 <p>신경외과</p>
                             </li>
@@ -163,7 +166,9 @@ function SearchHospital() {
                     </div>
                 </div>
             </div>
-            {more && <MoreDepartment closeModal={closeModal}></MoreDepartment>}
+            <div id='modal' onClick={closeModal}>
+                {more && <MoreDepartment></MoreDepartment>}
+            </div>
         </>
     )
 }
