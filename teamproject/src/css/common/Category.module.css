@@ -31,6 +31,12 @@
     color: rgb(46, 128, 222);
 }
 
+.navImg {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
 .navList {
     margin: 0px;
 }

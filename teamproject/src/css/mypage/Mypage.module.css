@@ -1,0 +1,76 @@
+.mypageArea {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    border-left: 1px solid rgb(237, 239, 240);
+    border-right: 1px solid rgb(237, 239, 240);
+}
+
+.smallNavBox {
+    display: flex;
+    font-size: 13px;
+    font-weight: 400;
+    color: #8d9297;
+    padding: 24px 24px 0px;
+}
+
+.smallNav {
+    margin-right: 5px;
+}
+
+.userContentBox {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.userIcon {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.userIcon + img {
+    width: 48px;
+    height: 48px;
+}
+
+.userNicname {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgb(61, 69, 81);
+}
+
+.mypageNav {
+    display: flex;
+    overflow: auto;
+    padding: 0px 24px;
+    gap: 12px;
+}
+
+.lineDiv {
+    height: 1px;
+    width: 100%;
+    bottom: 0px;
+    border-bottom: 1px solid rgb(223, 225, 226);
+}
+
+.contextArea {
+    padding: 24px;
+}
+
+
+
+.active {
+    border-bottom: 2px solid black;
+}
+
+.title {
+    font-weight: 600;
+    color: black;
+}
