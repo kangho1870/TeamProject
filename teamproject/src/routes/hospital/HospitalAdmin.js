@@ -1,5 +1,5 @@
 import Category from "../../components/common/Category";
-import styles from "../../css/hospital/HospitalAdmin.module.css"''
+import styles from "../../css/hospital/HospitalAdmin.module.css"
 
 
 function HospitalAdmin() {

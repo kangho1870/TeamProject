@@ -1,0 +1,49 @@
+p {
+    margin: 0;
+}
+
+.articleBox {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgb(241, 243, 246);
+    cursor: pointer;
+    height: 100%;
+}
+
+.articleBox:hover {
+    background-color: #f5f6f7;
+}
+
+.articleTitle {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+.articleContent {
+    font-size: 14px;
+    font-weight: 400;
+    color: #7d8287;
+}
+
+.articleDetail {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    margin-bottom: 10px;
+}
+
+.articleLikeBox {
+    display: flex;
+}
+
+.articleDetailBox {
+    display: flex;
+    align-items: center;
+    color: #b1b4b8;
+}
+
+.articleDetailContent {
+    margin-left: 3px;
+    margin-right: 6px;
+}

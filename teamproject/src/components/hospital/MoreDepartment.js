@@ -1,6 +1,8 @@
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import styles from '../../css/hospital/MoreDepartment.module.css';
 
-function MoreDepartment() {
+function MoreDepartment(props) {
+    const navigate = useNavigate();
     return (
         <>
             <div className={styles.moreDepartmentModal}>
@@ -8,7 +10,7 @@ function MoreDepartment() {
                     <div className={styles.moreDepartmentBtnBox}>
                         <h4 className={styles.departmentSelect}>진료과목 선택</h4>
                         <ul className={styles.departmentUl}>
-                            <li className={styles.departmentLi}>
+                            <li className={styles.departmentLi} onClick={() => {navigate("/")}}>
                                 <div className={styles.departmentTitleBox}>
                                     <p>가정의학과</p>
                                     <span>건강증진, 예방, 만성질환 등</span>

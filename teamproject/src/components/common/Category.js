@@ -15,10 +15,30 @@ function Category() {
             </div>
             <div className={styles.navBox}>
                 <ul className={styles.navList}>
-                    <a><li className={styles.list}>병원 찾기</li></a>
-                    <a><li className={styles.list}>약국 찾기</li></a>
-                    <a><li className={styles.list}>건강 매거진</li></a>
-                    <a><li className={styles.list}>마이 페이지</li></a>
+                    <a>
+                        <li className={styles.list}>
+                            <img src={require("../../imgs/category-img/병원.png")} className={styles.navImg}></img>
+                            병원 찾기
+                        </li>
+                    </a>
+                    <a>
+                        <li className={styles.list}>
+                            <img src={require("../../imgs/category-img/약국.png")} className={styles.navImg}></img>
+                            약국 찾기
+                        </li>
+                    </a>
+                    <a>
+                        <li className={styles.list}>
+                            <img src={require("../../imgs/category-img/매거진.png")} className={styles.navImg}></img>
+                            건강 매거진
+                        </li>
+                    </a>
+                    <a>
+                        <li className={styles.list}>
+                            <img src={require("../../imgs/category-img/마이페이지.png")} className={styles.navImg}></img>
+                            마이 페이지
+                        </li>
+                    </a>
                 </ul>
                 <div className={styles.btnBox}>
                     <button className={`${styles.userLoginBtn} ${styles.loginBtn}`}>사용자 로그인/가입</button>
