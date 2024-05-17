@@ -3,7 +3,11 @@ import Category from "../../components/common/Category";
 import styles from '../../css/hospital/SearchHospital.module.css';
 import HospitalStyles from '../../css/hospital/SearchHospitalTitle.module.css';
 import HospitalList from '../../components/hospital/HospitalList';
-function SearchHospital() {
+function SearchHospitalTitle() {
+
+    const params = new URLSearchParams(window.location.search);
+    
+    let department = params.get("keyword");
 
     return (
         <>
@@ -31,7 +35,7 @@ function SearchHospital() {
                         <button className={HospitalStyles.backBtn}><i class="fa-solid fa-angle-left"></i></button>
                         <div className={HospitalStyles.searchInputBox}>
                             <form>
-                                <input placeholder='지역+과목명, 병원명을 입력해주세요.' className={HospitalStyles.searchInput}></input>
+                                <input placeholder='지역+과목명, 병원명을 입력해주세요.' className={HospitalStyles.searchInput} value={department}></input>
                                 <button type='submit' className={HospitalStyles.searchInputBtn}><i class="fa-solid fa-magnifying-glass"></i></button>
                             </form>
                         </div>
@@ -79,4 +83,4 @@ function SearchHospital() {
     )
 }
 
-export default SearchHospital;
+export default SearchHospitalTitle;

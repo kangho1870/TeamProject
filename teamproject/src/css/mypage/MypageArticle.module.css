@@ -8,6 +8,7 @@ p {
     border-bottom: 1px solid rgb(241, 243, 246);
     cursor: pointer;
     height: 100%;
+    margin-bottom: 10px;
 }
 
 .articleBox:hover {
