@@ -13,9 +13,8 @@ function Category() {
 
     return (
         <>
-        
             <div className={styles.categoryNav}>
-                <div className={styles.logoBox}>
+                <div className={styles.logoBox} onClick={() => {navigate("/")}}>
                     <div className={styles.logo}>
                         <i class="fa-solid fa-stethoscope">몽땅병원</i>
                     </div>
@@ -32,7 +31,7 @@ function Category() {
                             </li>
                         </a>
                         <a>
-                            <li className={styles.list} onClick={() => {navigate("/")}}>
+                            <li className={styles.list} onClick={() => {navigate("/pharmacys")}}>
                                 <img src={require("../../imgs/category-img/약국.png")} className={styles.navImg}></img>
                                 약국 찾기
                             </li>
@@ -44,6 +43,12 @@ function Category() {
                             </li>
                         </a>
                         <a>
+                            <li className={styles.list} onClick={() => {navigate("/community")}}>
+                                <img src={require("../../imgs/category-img/매거진.png")} className={styles.navImg}></img>
+                                커뮤니티
+                            </li>
+                        </a>
+                        <a>
                             <li className={styles.list} onClick={() => {navigate("/mypage")}}>
                                 <img src={require("../../imgs/category-img/마이페이지.png")} className={styles.navImg}></img>
                                 마이 페이지
@@ -51,7 +56,7 @@ function Category() {
                         </a>
                     </ul>
                     <div className={styles.btnBox}>
-                        <button className={`${styles.userLoginBtn} ${styles.loginBtn}`} onClick={() => {setAcountView(true)}}>사용자 로그인/가입</button>
+                        <button className={`${styles.userLoginBtn} ${styles.loginBtn}`} onClick={() => {setAcountView(true)}}>로그인/가입</button>
                         <button className={`${styles.hospitalLoginBtn} ${styles.loginBtn}`}>병원 등록</button>
                     </div>
                 </div>

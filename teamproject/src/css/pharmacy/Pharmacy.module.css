@@ -1,0 +1,154 @@
+.mainNavSmall {
+    display: flex;
+    font-size: 13px;
+    font-weight: 400;
+    color: #8d9297;
+    padding: 24px 24px 0px;
+}
+
+.smallNav {
+    margin-right: 5px;
+}
+
+.mainContext {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    border-left: 1px solid rgb(237, 239, 240);
+    border-right: 1px solid rgb(237, 239, 240);
+    overflow-y: scroll;
+}
+
+.map {
+    padding: 12px 24px 12px 24px;
+    width: 100%;
+    border-bottom: 8px solid rgb(237, 239, 240);
+    margin-bottom: 12px;
+}
+
+.mainTitle {
+    font-size: 22px;
+    color: #1c1d1f;
+}
+
+.titleBox {
+    padding: 0px 24px;
+}
+
+.pharmacyListUl {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 24px;
+}
+
+.pharmacyListLi {
+    position: relative;
+    padding: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.pharmacyListDetailBox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pharmacyListDetail {
+    overflow: hidden;
+}
+
+.pharmacyListDetailTitleBox {
+    display: flex;
+    align-items: center;
+}
+
+.pharmacyListDetailTitle {
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 24px;
+    color: rgb(86, 91, 101);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+}
+
+.pharmacyListDetailDepartmentBox {
+    display: flex;
+    align-items: center;
+}
+
+.pharmacyListDetailDepartment {
+    margin-top: 4px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: rgb(141, 146, 151);
+}
+
+.pharmacyListDetailAddressBox {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4px;
+}
+
+.pharmacyListDetailAddressSpan {
+    gap: 4px;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    color: rgb(169, 174, 177);
+    margin-left: 3px;
+}
+
+.pharmacyListDetailAddress {
+    display: flex;
+    align-items: center;
+}
+
+.pharmacyListDetailLocationBox {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+
+.pharmacyListDetailLocation {
+    font-weight: 500;
+    font-size: 12px;
+    color: rgb(169, 174, 177);
+    background: rgb(245, 246, 247);
+    display: inline-block;
+    padding: 1px 4px;
+    border-radius: 4px;
+    height: 20px;
+    margin-right: 6px;
+}
+
+.pharmacyDetailBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.pharmacyDetailBox:hover {
+    background-color: rgb(247, 249, 250);
+}
+
+.pharmacyMoreBtnBos {
+    margin-bottom: 30px;
+    padding: 0px 24px;
+}
+
+.pharmacyDetailContextBox {
+    width: 100%;
+    height: 80px;
+    background-color: rgb(247, 249, 250);
+}
+
+.mapMarker {
+    border: none;
+    border-radius: 3px;
+    text-align: center;
+}
