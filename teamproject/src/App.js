@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import { Route, Router, Routes } from 'react-router-dom';
 import SearchHospital from './routes/hospital/SearchHospital';
@@ -26,5 +27,6 @@ function App() {
     </>
   );
 }
+
 
 export default App;
