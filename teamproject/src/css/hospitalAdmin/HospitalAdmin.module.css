@@ -1,0 +1,46 @@
+.hospitalAdminArea {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    border-left: 1px solid rgb(237, 239, 240);
+    border-right: 1px solid rgb(237, 239, 240);
+}
+
+.smallNavBox {
+    display: flex;
+    font-size: 13px;
+    font-weight: 400;
+    color: #8d9297;
+    padding: 24px 24px 0px;
+    margin-bottom: 20px;
+}
+
+.smallNav {
+    margin-right: 5px;
+}
+
+.categoryArea {
+    display: flex;
+    padding: 0px 24px;
+}
+
+.categoryBox {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    border-bottom: 1px solid rgb(223, 225, 226);
+}
+
+.categoryBtn {
+    display: flex;
+    border: none;
+}
+
+.categoryBtnActive {
+    border-bottom: 2px solid black;
+}
+
+.categorySpan {
+    font-weight: 600;
+    color: black;
+}

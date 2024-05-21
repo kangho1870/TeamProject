@@ -1,0 +1,271 @@
+.mainpage {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.banner {
+    display: flex;
+    width: 100%;
+    height: 500px;
+    background-color: rgb(212, 238, 248);
+}
+
+.mainArea {
+    width: 100%;
+    background: rgb(255, 255, 255);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 32px;
+    padding-bottom: 160px;
+}
+
+.searchBox {
+    position: absolute;
+    max-width: 768px;
+    width: 100%;
+    display: flex;
+    padding: 0px 28px;
+    height: 64px;
+    background: rgb(255, 255, 255);
+    border-radius: 40px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 16px 0px;
+    top: -32px;
+    align-items: center;
+    z-index: 2;
+}
+
+.inputBox {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.logo {
+    font-size: 27px;
+    color: rgb(46, 128, 222);
+}
+
+.searchInput {
+    width: 100%;
+    margin: 0px 12px;
+    height: 28px;
+    border: none;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.navBox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navArea {
+    width: 100%;
+    max-width: 768px;
+    padding: 0px 8px;
+    margin-top: 32px;
+    display: flex;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.searchBtnBox {
+    width: 243px;
+    height: 120px;
+    border-radius: 12px;
+    border: 1px solid rgb(223, 225, 226);
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 12px 0px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(247, 249, 250);
+    background-size: 100% 100%;
+}
+
+.searchBtnBox:hover {
+    background-color: #8cc0e7;
+}
+
+.searcHospitalBtnBox {
+    background-color: #98CEF6;
+    background-size: 100% 100%;
+    background-image: url(../../imgs/mainpage-img/길.png);
+    border: none;
+}
+
+.searcPharmacyBtnBox {
+    background-color: #98CEF6;
+    background-size: 100% 100%;
+    background-image: url(../../imgs/mainpage-img/검색.png);
+    border: none;
+}
+
+.searcAppointmentBtnBox {
+    background-color: #9eccf0;
+    background-size: 100% 100%;
+    background-image: url(../../imgs/mainpage-img/예약.png);
+    border: none;
+}
+
+.searcHospitalBtnSubTitle {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    color: rgb(255, 255, 255);
+    opacity: 0.6;
+}
+
+.searcHospitalBtnTitle {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 26px;
+    color: rgb(255, 255, 255);
+}
+
+.contentsNavBtn {
+    display: flex;
+    width: 100%;
+    max-width: 492px;
+    padding: 6px;
+    gap: 1px;
+    border-radius: 12px;
+    background: rgb(247, 249, 250);
+    margin-top: 40px;
+    margin-bottom: 32px;
+}
+
+.contentNavBtn {
+    border: none;
+    flex: 1 1 0%;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(255, 255, 255);
+    color: rgb(61, 69, 81);
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+}
+
+.contentNavBtnActive {
+    background-color: rgb(233, 239, 241);
+}
+
+.selectContentNavBtn {
+    border: none;
+    flex: 1 1 0%;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(247, 249, 250);
+    color: rgb(113, 118, 122);
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+}
+
+.contentArea {
+    max-width: 768px;
+    width: 100%;
+}
+
+.navTitleBox {
+    display: flex;
+    padding: 0px 12px;
+    height: 32px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 11px;
+}
+
+.navTitle {
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 26px;
+    color: rgb(61, 69, 81);
+}
+
+.moreBtn {
+    border: none;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(169, 174, 177);
+}
+
+.contentBox {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 28px;
+}
+
+.contentTitleBox {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 12px;
+    border-radius: 12px;
+}
+
+.contextBox {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 5px 0px;
+}
+
+.contentTitle {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgb(61, 69, 81);
+    margin-bottom: 8px;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    word-break: keep-all;
+}
+
+.content {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(113, 118, 122);
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: keep-all;
+}
+
+.writeBox {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 24px;
+}
+
+.write {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    color: rgb(169, 174, 177);
+}
+
+.centerDiv {
+    width: 100%;
+    max-width: 768px;
+    padding: 32px 24px;
+}
