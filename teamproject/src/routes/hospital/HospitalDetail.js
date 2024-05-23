@@ -14,6 +14,10 @@ function HospitalDetail() {
         setViewTime(false);
         setAppoinmentView(false);
     }
+    const handleContentClick = (e) => {
+        e.stopPropagation();
+        
+    };
 
     return (
         <>
@@ -97,12 +101,20 @@ function HospitalDetail() {
                     </div>
                 </section>
             </div>
-            <div id="time-modal" onClick={modalClose}>
-                {viewTime && <AllDayTime></AllDayTime>}
-            </div>
-            <div id="appointment-modal" onClick={modalClose}>
-                {appointmentView && <HospitalAppointment></HospitalAppointment>}
-            </div>
+            {viewTime && 
+                <div id="time-modal" onClick={modalClose}>
+                    <AllDayTime></AllDayTime>
+                </div>
+            }
+                
+            {appointmentView &&
+                <div id="appointment-modal" onClick={handleContentClick}>
+                    <div>
+                        <HospitalAppointment modalClose={modalClose}></HospitalAppointment>
+                    </div>
+                </div>
+                
+            }
         </>
     )
 }

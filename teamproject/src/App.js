@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, Router, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import SearchHospital from './routes/hospital/SearchHospital';
 import SearchHospitalTitle from './routes/hospital/SearchHospitalTitle';
 import HospitalDetail from './routes/hospital/HospitalDetail';
