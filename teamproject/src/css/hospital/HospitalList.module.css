@@ -1,13 +1,3 @@
-.hospitalListSection {
-    width: 100%;
-}
-
-.hospitalListUl {
-    display: flex;
-    flex-direction: column;
-    padding-left: 10px;
-}
-
 .hospitalListLi {
     position: relative;
     padding: 20px 0px;

@@ -103,6 +103,12 @@
     border: 1px solid rgb(245, 246, 247);
 }
 
+.activeBtn {
+    border: 1px solid rgb(0, 10, 222);
+    background-color: rgb(230, 242, 250);
+    color: rgb(0, 10, 222);
+}
+
 .menuDown {
     display: flex;
     justify-content: center;
@@ -122,4 +128,18 @@
     border: 1px solid rgb(0, 10, 222);
     background-color: rgb(230, 242, 250);
     color: rgb(0, 10, 222);
+}
+
+.btnSpan {
+    color: rgb(0, 10, 222);
+}
+
+.hospitalListSection {
+    width: 100%;
+}
+
+.hospitalListUl {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
 }

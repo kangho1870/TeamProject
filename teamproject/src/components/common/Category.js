@@ -10,6 +10,9 @@ function Category() {
     const closeModal = () => {
         setAcountView(false);
     }
+    const handleModalClick = (e) => {
+        e.stopPropagation();
+    };
 
     return (
         <>
@@ -61,9 +64,13 @@ function Category() {
                     </div>
                 </div>
             </div>
-            <div id='modal' onClick={closeModal}>
-                {acountView && <Acount closeModal={closeModal}></Acount>}
-            </div>
+            {acountView && (
+                <div id="modal" onClick={handleModalClick}>
+                    <div>
+                        <Acount closeModal={closeModal}></Acount>
+                    </div>
+                </div>
+            )}
         </>
     )
 }

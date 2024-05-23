@@ -38,6 +38,8 @@ textarea {
 
 .appointmentModalBox {
     display: flex;
+    max-height: 750px;
+    overflow-y: scroll;
     flex-direction: column;
     padding: 12px 24px 24px;
     border-radius: 24px;
@@ -120,4 +122,17 @@ textarea {
     border-radius: 10px;
     font-size: 18px;
     color: white;
+}
+
+.calendarBox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.timeType {
+    font-weight: 700;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 16px;
 }
