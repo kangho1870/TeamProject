@@ -1,0 +1,138 @@
+button {
+    border: none;
+    background-color: transparent;
+}
+
+textarea {
+    padding: 10px;
+    resize: none;
+    width: 100%;
+    height: 100px;
+    border: 1px solid rgb(223, 225, 226);
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+.appointmentModal {
+    z-index: 1000;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.appointmentModalArea {
+    max-width: 800px;
+    width: 100%;
+    padding-top: 12px;
+    margin: 24px;
+    border-radius: 24px;
+    background-color: white;
+}
+
+.appointmentModalBox {
+    display: flex;
+    max-height: 750px;
+    overflow-y: scroll;
+    flex-direction: column;
+    padding: 12px 24px 24px;
+    border-radius: 24px;
+    background-color: rgb(255, 255, 255);
+}
+
+.appointmentTitle {
+    font-weight: 700;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 16px;
+    align-items: center;
+}
+
+.appointmentSubTitle {
+    font-weight: 700;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 16px;
+    align-items: center;
+    text-align: center;
+}
+
+.appointmentDayArea {
+    display: flex;
+    margin: 0px;
+    height: 50px;
+    background-color: rgb(235, 251, 238);
+    border-radius: 12px;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    text-decoration: none;
+    text-transform: none;
+}
+
+.appointmentDayBox {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    margin: auto;
+}
+
+.appointmentTimeUl {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.appointmentTimeLi {
+    align-items: center;
+    text-align: center;
+}
+
+.appointmentTimeBtn {
+    width: 130px;
+    height: 40px;
+    align-items: center;
+    text-align: center;
+    overflow-y: scroll;
+    color: white;
+    background-color: rgb(132, 207, 132);
+    border-radius: 10px;
+}
+
+.appointmentInputArea {
+    width: 100%;
+    margin-bottom: 18px;
+}
+
+.appointmentBtnBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.appointmentBtn {
+    width: 100%;
+    height: 57px;
+    background-color: rgb(55, 137, 191);
+    border-radius: 10px;
+    font-size: 18px;
+    color: white;
+}
+
+.calendarBox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.timeType {
+    font-weight: 700;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 16px;
+}

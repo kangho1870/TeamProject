@@ -1,19 +1,13 @@
-.hospitalListSection {
-    width: 100%;
-}
-
-.hospitalListUl {
-    display: flex;
-    flex-direction: column;
-    padding-left: 10px;
-}
-
 .hospitalListLi {
     position: relative;
     padding: 20px 0px;
     display: flex;
     flex-direction: column;
     cursor: pointer;
+}
+
+.hospitalListLi:hover {
+    background-color: rgb(247, 249, 250);
 }
 
 .hospitalListDetailBox {

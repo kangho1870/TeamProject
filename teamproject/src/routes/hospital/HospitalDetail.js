@@ -2,16 +2,22 @@ import Category from "../../components/common/Category";
 import styles from "../../css/hospital/HospitalDetail.module.css";
 import { useEffect, useState } from "react";
 import AllDayTime from "../../components/hospital/AllDayTime";
+import HospitalAppointment from "../../components/hospital/HospitalAppointment.js";
 
 const { kakao } = window;
 
 function HospitalDetail() {
     
     let [viewTime, setViewTime] = useState(false);
-
+    let [appointmentView, setAppoinmentView] = useState(false);
     const modalClose = () => {
         setViewTime(false);
+        setAppoinmentView(false);
     }
+    const handleContentClick = (e) => {
+        e.stopPropagation();
+        
+    };
 
     return (
         <>
@@ -90,14 +96,25 @@ function HospitalDetail() {
                     </div>
                     <div className={styles.hospitalAppointment}>
                         <div className={styles.hospitalAppointmentBtnBox}>
-                            <button className={styles.hospitalAppointmentBtn}>예약하기</button>
+                            <button className={styles.hospitalAppointmentBtn} onClick={() => {setAppoinmentView(true)}}>예약하기</button>
                         </div>
                     </div>
                 </section>
             </div>
-            <div id="modal" onClick={modalClose}>
-                {viewTime && <AllDayTime></AllDayTime>}
-            </div>
+            {viewTime && 
+                <div id="time-modal" onClick={modalClose}>
+                    <AllDayTime></AllDayTime>
+                </div>
+            }
+                
+            {appointmentView &&
+                <div id="appointment-modal" onClick={handleContentClick}>
+                    <div>
+                        <HospitalAppointment modalClose={modalClose}></HospitalAppointment>
+                    </div>
+                </div>
+                
+            }
         </>
     )
 }

@@ -1,9 +1,38 @@
-import face from '../../imgs/department-img/피부과.png'
 import Category from "../../components/common/Category";
 import styles from '../../css/hospital/SearchHospital.module.css';
 import HospitalStyles from '../../css/hospital/SearchHospitalTitle.module.css';
 import HospitalList from '../../components/hospital/HospitalList';
-function SearchHospital() {
+import { useState } from 'react';
+function SearchHospitalTitle() {
+
+    const params = new URLSearchParams(window.location.search);
+
+    let hospitals = ["a", "b" ,"c"];
+    
+    let filter = [
+        {
+            userAddress: "연제구",
+            hospitalOpen: false,
+            nightOpen: false,
+            emergency: false
+        }
+    ]
+
+    let filterBtns = [filter[0].userAddress, "hospitalOpen", "nightOpen", "emergency"];
+    let [filterBtnClickStatus, setFilterBtnClickStatus] = useState([true, false, false, false]);
+
+    const toggleActive = (item, index) => {
+        let copyBtnsStatus = [...filterBtnClickStatus];
+        copyBtnsStatus[index] = !copyBtnsStatus[index];
+        setFilterBtnClickStatus(copyBtnsStatus);
+        let copyFilter = [...filter];
+
+        if(typeof copyFilter[0][item] === "boolean") {
+            copyFilter[0][item] = !copyFilter[0][item];
+        }
+    };
+
+    let department = params.get("keyword");
 
     return (
         <>
@@ -31,7 +60,7 @@ function SearchHospital() {
                         <button className={HospitalStyles.backBtn}><i class="fa-solid fa-angle-left"></i></button>
                         <div className={HospitalStyles.searchInputBox}>
                             <form>
-                                <input placeholder='지역+과목명, 병원명을 입력해주세요.' className={HospitalStyles.searchInput}></input>
+                                <input placeholder='지역+과목명, 병원명을 입력해주세요.' className={HospitalStyles.searchInput} value={department}></input>
                                 <button type='submit' className={HospitalStyles.searchInputBtn}><i class="fa-solid fa-magnifying-glass"></i></button>
                             </form>
                         </div>
@@ -50,28 +79,45 @@ function SearchHospital() {
                                         </div>
                                     </div>
                                 </button>
-                                <button className={HospitalStyles.placeBtn}>
-                                    <div>
-                                        <span><i class="fa-solid fa-location-crosshairs"></i></span>
-                                    </div>
-                                    <span>연산동</span>
-                                </button>
-                                <button className={HospitalStyles.detailfilterBtnBox}>
-                                    <i class="fa-solid fa-house-medical-circle-check"></i>
-                                    <span>간편예약</span>
-                                </button>
-                                <button className={HospitalStyles.detailfilterBtnBox}>
-                                    <span>진료중</span>
-                                </button>
-                                <button className={HospitalStyles.detailfilterBtnBox}>
-                                    <span>야간진료</span>
-                                </button>
-                                <button className={HospitalStyles.detailfilterBtnBox}>
-                                    <span>응급병동</span>
-                                </button>
+                                {filterBtns.map((v, i) => (
+                                    <button
+                                        key={i} 
+                                        className={`${HospitalStyles.detailfilterBtnBox} ${filterBtnClickStatus[i] ? HospitalStyles.activeBtn : ""} ${i == 0 ? HospitalStyles.activeBtn : ""}`}
+                                        onClick={() => toggleActive(v, i)}
+                                    >
+                                        {i == 0 ? 
+                                            <>
+                                                <div>
+                                                    <span className={HospitalStyles.btnSpan}><i class="fa-solid fa-location-crosshairs"></i></span>
+                                                </div>
+                                                <span className={HospitalStyles.btnSpan}>
+                                                    {v}
+                                                </span>
+                                            </>
+                                            : 
+                                            <>
+                                                <span className={filterBtnClickStatus[i] == true ? HospitalStyles.btnSpan : ""}>
+                                                    {v == "hospitalOpen" ? "진료 중"
+                                                                        : v == "nightOpen" ? "야간진료"
+                                                                        : v == "emergency" ? "응급병동" : ""
+                                                    }
+                                                </span>
+                                            </>
+                                        }
+                                        
+                                    </button>
+                                ))}
                             </div>
                         </div>
-                        <HospitalList></HospitalList>
+                        <section className={HospitalStyles.hospitalListSection}>
+                            <div>
+                                <ul className={HospitalStyles.hospitalListUl}>
+                                    {hospitals.map((v, i) => (
+                                        <HospitalList hospitals={v} index={i}></HospitalList>
+                                    ))}
+                                </ul>
+                            </div>
+                        </section>
                     </section>
                 </div>
             </div>
@@ -79,4 +125,4 @@ function SearchHospital() {
     )
 }
 
-export default SearchHospital;
+export default SearchHospitalTitle;

@@ -61,6 +61,7 @@ img {
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    padding: 0px 12px;
 }
 
 .departmentUl::-webkit-scrollbar {
@@ -72,6 +73,12 @@ img {
     justify-content: space-between;
     align-items: center;
     padding: 20px 12px;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.departmentLi:hover {
+    background-color: rgb(247, 249, 250);
 }
 
 .departmentTitleBox {

@@ -1,0 +1,90 @@
+.text {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 30px;
+    color: rgb(45, 46, 47);
+    margin-bottom: 4px;
+}
+
+.text2 {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgb(141, 146, 151);
+}
+
+.acountArea {
+    z-index: 301;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.acountBox {
+    z-index: 301;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    padding: 32px;
+    background-color: white;
+}
+
+.acountBoxTop {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin-bottom: 4px;
+}
+
+.acountBoxTop + button {
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+}
+
+.kakaoBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: rgb(255, 227, 55);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    margin-top: 32px;
+    padding: 18px 0px;
+    color: rgb(45, 46, 47);
+}
+
+.kakaoImg {
+    width: 25px;
+    height: 25px;
+    margin-right: 3px;
+}
+
+.mongDdangBtn {
+    background-color: rgb(76, 183, 229);
+    margin-top: 0px;
+    color: rgb(255, 255, 255) !important;
+}
+
+.login {
+    margin-right: 2px;
+}
+
+.signupBtn {
+    background-color: rgb(240, 243, 245);
+    margin-top: 30px;
+    color: rgb(4, 3, 3) !important;
+}

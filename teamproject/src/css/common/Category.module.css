@@ -9,8 +9,10 @@
 .categoryNav {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 360px;
+    height: 100%;
     align-items: center;
+    border-left: 1px solid rgb(241, 243, 246);
 }
 
 .logoBox {
@@ -20,6 +22,7 @@
     padding: 24px;
     width: 296px;
     height: 90px;
+    cursor: pointer;
 }
 
 .navBox {
@@ -29,6 +32,12 @@
 .logo {
     font-size: 27px;
     color: rgb(46, 128, 222);
+}
+
+.navImg {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
 }
 
 .navList {
@@ -43,10 +52,11 @@
     margin-bottom: 8px;
     width: 272px;
     height: 48px;
+    cursor: pointer;
 }
 
 .list:hover {
-    background-color: rgb(247, 249, 250);;
+    background-color: rgb(247, 249, 250);
 }
 
 .btnBox {
@@ -65,6 +75,10 @@
     background-color: rgb(230, 242, 250);
     font-weight: 500;
     text-align: center;
+}
+
+.loginBtn:hover {
+    background-color: rgb(218, 234, 245);
 }
 
 .userLoginBtn {
