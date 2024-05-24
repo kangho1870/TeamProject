@@ -1,0 +1,132 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    max-width: 768px;
+    width: 768px;
+    min-width: 600px;
+    z-index: 1;
+}
+.mainHome {
+    width: 100%;
+    border-right: 1px solid rgb(241, 243, 246);
+    border-left: 1px solid rgb(241, 243, 246);
+}
+.mainBox {
+    position: relative;
+    margin: 0px auto;
+    padding-top: 24px;
+}
+.mainBoxs {
+    width: 100%;
+    min-height: 100vh;
+}
+.mainHeader {
+    padding: 26px 24px;
+}
+.breadcrumbs {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    color: rgb(141, 146, 151);
+    visibility: visible;
+    position: static;
+    display: flex;
+}
+.breadcrumbsBox {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-left: 6px;
+}
+.breadcrumbsBoxs {
+    margin-left: 10px;
+}
+.mainMagzine {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+}
+.mainTitle {
+    width: 100%;
+    height: 360px;
+    position: relative;
+    padding: 24px;
+    
+}
+.mainPhoto {
+    box-sizing: border-box;
+    display: block;
+    overflow: hidden;
+    width: initial;
+    height: initial;
+    background-color: none;
+    opacity: 1;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    inset: 0px;
+    
+}
+.titlePhoto {
+    position: absolute;
+    inset: 0px;
+    box-sizing: border-box;
+    padding: 0px;
+    border: none;
+    margin: auto;
+    display: block;
+    width: 0px;
+    height: 0px;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    color: rgb(51, 53, 54)
+}
+.headerTitle {
+    position: absolute;
+    left: 24px;
+    bottom: 24px;
+}
+.hgroup {
+    display: flex;
+    flex-direction: column;
+    word-break: keep-all;
+    width: 100%;
+    padding-right: 24px;
+    white-space: pre-wrap;
+}
+.h1Title {
+    font-style: normal;
+    text-decoration: none;
+    text-transform: none;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 48px;
+    color: rgb(71, 74, 74);
+    margin-bottom: 8px;
+    word-break: keep-all;
+}
+.h2 {
+    font-style: normal;
+    text-decoration: none;
+    text-transform: none;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    color: rgb(71, 74, 74);
+    margin-bottom: 8px;
+}
+.space {
+    width: 100%;
+    margin-top: 32px;
+    padding: 0px 25px;
+}
+.content {
+    width: 100%;
+
+}    

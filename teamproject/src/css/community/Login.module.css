@@ -1,0 +1,192 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    max-width: 768px;
+    width: 768px;
+    min-width: 600px;
+    z-index: 1;
+}
+.mainHome {
+    width: 100%;
+    border-right: 1px solid rgb(241, 243, 246);
+    border-left: 1px solid rgb(241, 243, 246);
+}
+.mainBox {
+    position: relative;
+    margin: 0px auto;
+    padding-top: 24px;
+}
+.mainBoxs {
+    width: 100%;
+    min-height: 100vh;
+}
+.mainHeader {
+    padding: 26px 24px;
+}
+.breadcrumbs {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    color: rgb(141, 146, 151);
+    visibility: visible;
+    position: static;
+    display: flex;
+}
+.breadcrumbsBox {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-left: 6px;
+}
+
+.logo {
+    font-size: 27px;
+    color: rgb(46, 128, 222);
+    margin-left: 300px;
+}
+.loginBox {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+.loginName {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+.loginSpan {
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(44, 55, 68);
+    margin-bottom: 6px;
+    margin-left: 63px;
+}
+.loginInput {
+    font-size: 14px;
+    box-sizing: border-box;
+    height: 48px;
+    padding: 13px 13px 14px;
+    border-radius: 8px;
+    border: 1px solid rgb(229, 232, 235);
+    background-color: rgb(255, 255, 255);
+    width: 70%;
+    margin-left: 63px;
+}
+.loginPhone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    width: 54px;
+    color: rgb(171, 175, 180);
+}
+.phone{
+    font-size: 14px;
+    box-sizing: border-box;
+    height: 48px;
+    padding: 13px 13px 14px;
+    border-radius: 8px;
+    border: 1px solid rgb(229, 232, 235);
+    width: 54px;
+    margin-left: 289px;
+}
+.phone1 {
+    display: block;
+    font-size: 14px;
+    box-sizing: border-box;
+    width: 60px;
+    height: 48px;
+    padding: 13px 13px 14px;
+    border-radius: 8px;
+    border: 1px solid rgb(229, 232, 235);
+    background-color: rgb(255, 255, 255);
+   
+}
+.agreeMain {
+    box-sizing: border-box;
+    margin-left: 69px;
+}
+.agreeBox {
+    padding: 20px 16px;
+    border-radius: 8px;
+    border: 1px solid rgb(229, 232, 235);
+    margin-bottom: 44px;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 510px;
+    height: 200px;
+    
+}
+.checkBox {
+    margin-left: 8px;
+    font-size: 14px;
+    color: rgb(44, 55, 68);
+    font-size: 14px;
+}
+.input{
+    text-align: center;
+}
+.agreeContent{
+    transform: translateY(20px);
+    transition: height 0.4s ease 0s;
+    overflow: hidden;
+    height: 220px;
+}
+.agreeDetail {
+    font-size: 13px;
+    color: rgb(149, 155, 161);
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(229, 232, 235);
+    margin-bottom: 20px;
+    line-height: 19.5px;
+}
+.collection {
+    font-size: 13px;
+    text-align: left;
+
+}
+.update {
+    position: sticky;
+    bottom: 0px;
+    left: 0px;
+    margin: 0px auto;
+    width: 100%;
+    z-index: 50;
+}
+.updateBox {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0px auto;
+    padding: 0px 24px 16px;
+    max-width: 768px;
+    background-color: rgb(255, 255, 255);
+}
+.usreUpdate{
+    flex: 7 1 0%;
+}
+.userUpdateMain {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 26px;
+    width: 100%;
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(0, 10, 222);
+    color:rgb(255, 255, 255);
+    justify-content: center;
+    align-items: center;
+    margin-right: 250px;   
+}
+
+
+

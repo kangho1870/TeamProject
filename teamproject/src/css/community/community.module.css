@@ -1,0 +1,150 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    max-width: 768px;
+    width: 768px;
+    min-width: 600px;
+    z-index: 1;
+}
+.main {
+    width: 100%;
+    border-right: 1px solid rgb(241, 243, 246);
+    border-left: 1px solid rgb(241, 243, 246);
+}
+.mainBanner {
+    padding: 24px 24px 0px;
+    position: relative;
+    z-index: 100;
+
+}
+.mainHeader{
+    display: flex;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+
+}
+.mainButton {
+    margin-right: 6px;
+}
+.mark {
+    margin: 6px;
+}
+.mark-btn {
+    display: flex;
+    margin-left: 16px;
+    border-radius: 8px;
+}
+
+.mainSection {
+    display: flex;
+    flex-direction: column;
+}
+.postTitle {
+    display: flex;
+    line-height: 20px;
+    padding: 0px 12px;
+    margin-left: 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.categorybtn {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(86, 92, 101);
+    place-content: center;
+    -webkit-box-pack: center;
+    padding: 0px 12px;
+    height: 32px;
+    background: rgb(237, 239, 240);
+    margin-left: 16px;
+    border-radius: 8px;
+}
+.postList {
+    box-sizing: border-box;
+}
+.postListTitle{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    
+}
+.postListBox {  
+    overflow: hidden auto;
+    transform: unset;
+    border-bottom: 1px solid rgb(237, 239, 240);
+}
+.postListBox:hover {
+    background-color: rgb(243, 245, 245);
+}
+.postContent{
+    margin-top: 10px;
+}
+
+.postContentDetail {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 24px;
+}
+.postContentDetailInput {
+    padding: 24px 0px;
+    border-bottom: 1px solid rgb(241, 243, 246);
+    height: 200px;;
+}
+.postSubject {
+    display: flex;
+    gap: 6px;
+    padding-bottom: 16px;
+    box-sizing: border-box;
+}
+.postSubjectData {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    background: rgb(237, 239, 240);
+    color: rgb(113, 118, 122);
+   
+}
+.userBox {
+    display: flex;
+    font-size: 12px;
+    justify-content: space-between;
+    
+}
+.userName {
+    margin-right: 50px;
+    align-items: center;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+    flex-direction: column;
+}
+ 
+.box {
+    display: flex;
+    
+
+}
+.shape {
+    margin-right: 12px;
+}
+.postOpinion {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.icon {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-right: 16px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(169, 174, 177);
+}
