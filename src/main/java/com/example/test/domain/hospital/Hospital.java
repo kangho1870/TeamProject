@@ -13,7 +13,10 @@ public class Hospital {
     private String hospital_name;
     private String hospital_address;
     private String hospital_organ_loc;
-    private String[] hospital_category;
+    private String hospital_category_name;
+    private String hospital_phone;
+    private double hospital_latitude;
+    private double hospital_longitude;
 
     public HospitalRespDto toHospitalRespDto() {
         return HospitalRespDto.builder()
@@ -21,7 +24,9 @@ public class Hospital {
                 .hospitalName(hospital_name)
                 .hospitalAddress(hospital_address)
                 .hospitalOrganLoc(hospital_organ_loc)
-                .hospitalCategory(hospital_category)
+                .hospitalPhone(hospital_phone)
+                .hospitalLatitude(hospital_latitude)
+                .hospitalLongitude(hospital_longitude)
                 .build();
     }
 }

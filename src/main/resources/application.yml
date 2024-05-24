@@ -13,17 +13,16 @@ spring:
   mvc:
     static-path-pattern: /static/**
   datasource:
-      driver-class-name: org.mariadb.jdbc.Driver
-      url: 
-      username: admin
-      password: 
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://web-study-0223.cvci44g2akd9.ap-northeast-2.rds.amazonaws.com:3306/teamproject?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: admin
+    password: 85061621Tld!
   thymeleaf:
-      cache: false 
-  
-      
+    cache: false
+
 mybatis:
   mapper-locations:
-  - /mappers/*.xml
+    - /mappers/*.xml
   
 
      

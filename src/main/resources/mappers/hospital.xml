@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.test.domain.hospital.HospitalRepository">
+    <select id="getHospitalById" parameterType="int"
+    resultType="com.example.test.domain.hospital.Hospital">
+        SELECT
+            hsp.hospital_id,
+            hsp.hospital_name,
+            hsp.hospital_address,
+            hsp.hospital_organ_loc,
+            hcm.hospital_category_name,
+            hsp.hospital_phone,
+            hsp.hospital_latitude,
+            hsp.hospital_longitude
+        FROM hospital AS hsp
+        LEFT OUTER JOIN hospital_category hsc ON hsp.hospital_id = hsc.hospital_id
+        LEFT OUTER JOIN hospital_category_mst hcm ON hsc.hospital_category_id = hcm.hospital_category_id
+        WHERE hsp.hospital_id = #{hospitalId};
+    </select>
+
+</mapper>

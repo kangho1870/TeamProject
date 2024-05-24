@@ -7,5 +7,5 @@ import java.util.List;
 @Mapper
 public interface HospitalRepository {
 
-    public List<>
+    public List<Hospital> getHospitalById(int hospitalId) throws Exception;
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.test.api.domain.ApiRepository">
+    <insert id="addData" parameterType="hashMap">
+        INSERT INTO hospital
+        VALUES (
+            #{id},
+            #{instit_nm},
+            #{instit_kind},
+            #{medical_instit_kind},
+            #{street_nm_addr},
+            #{organ_loc},
+            #{zip_code},
+            #{tel},
+            #{lng},
+            #{lat},
+            NOW(),
+            NOW()
+        )
+    </insert>
+    <insert id="addTime" parameterType="hashMap">
+        INSERT INTO hospital_time
+        VALUES (
+            #{id},
+            #{Monday},
+            #{Tuesday},
+            #{Wednesday},
+            #{Thursday},
+            #{Friday},
+            #{Saturday},
+            #{Sunday},
+            #{holiday}
+        )
+    </insert>
+    <insert id="addDepartment" parameterType="java.util.List">
+        INSERT INTO hospital_category_mst (hospital_category_id, hospital_category_name)
+        VALUES
+            <foreach collection="list" item="item" separator=",">
+                (
+                0,
+                (#{item})
+                )
+            </foreach>
+    </insert>
+    <insert id="addHospitalDepartment" parameterType="hashMap">
+        INSERT INTO hospital_category
+        VALUES (
+            #{hospital_id},
+            (
+                SELECT
+                    hospital_category_id
+                FROM
+                    hospital_category_mst
+                WHERE
+                    hospital_category_name = #{department}
+            )
+        )
+    </insert>
+
+</mapper>

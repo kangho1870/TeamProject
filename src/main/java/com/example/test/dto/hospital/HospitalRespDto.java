@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,5 +17,8 @@ public class HospitalRespDto {
     private String hospitalName;
     private String hospitalAddress;
     private String hospitalOrganLoc;
-    private String[] hospitalCategory;
+    private List<String> hospitalCategory = new ArrayList<>();
+    private String hospitalPhone;
+    private double hospitalLatitude;
+    private double hospitalLongitude;
 }
