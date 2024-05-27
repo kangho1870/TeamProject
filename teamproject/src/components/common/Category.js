@@ -40,7 +40,7 @@ function Category() {
                             </li>
                         </a>
                         <a>
-                            <li className={styles.list} onClick={() => {navigate("/")}}>
+                            <li className={styles.list} onClick={() => {navigate("/healthMagzine")}}>
                                 <img src={require("../../imgs/category-img/매거진.png")} className={styles.navImg}></img>
                                 건강 매거진
                             </li>

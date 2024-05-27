@@ -1,12 +1,9 @@
-
-
 import Community from './routes/community/Community.js'
 import NoticeBoder from './routes/community/NoticeBoder.js';
 import HealthMagzine from './routes/community/HealthMagzine.js';
 import Login from './routes/community/Login.js';
 import Magzine from './routes/community/Magzine.js';
 import React from 'react';
-import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import SearchHospital from './routes/hospital/SearchHospital';
 import SearchHospitalTitle from './routes/hospital/SearchHospitalTitle';
@@ -27,10 +24,10 @@ function App() {
         <Route path='hospitals/:hospitalId' element={<HospitalDetail></HospitalDetail>}></Route>
 
         <Route path='/community' element={<Community></Community>}></Route>
-        <Route path='/NoticeBoder' element={<NoticeBoder></NoticeBoder>}></Route>
-        <Route path='/HealthMagzine' element={<HealthMagzine></HealthMagzine>}></Route>
+        <Route path='/noticeBoder' element={<NoticeBoder></NoticeBoder>}></Route>
+        <Route path='/healthMagzine' element={<HealthMagzine></HealthMagzine>}></Route>
         <Route path='/Login' element={<Login></Login>}></Route>
-        <Route path='/Magzine' element={<Magzine></Magzine>}></Route>
+        <Route path='/magzine' element={<Magzine></Magzine>}></Route>
 
         <Route path='hospitals/:hospitalId/appointment' element={<HospitalAppointment></HospitalAppointment>}></Route>
         <Route path='/hospitalAdmin' element={<HospitalAdmin></HospitalAdmin>}></Route>
