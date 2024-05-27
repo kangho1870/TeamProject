@@ -19,8 +19,7 @@ public class HospitalFilterReqDto {
     private boolean hospitalOpen;
     private boolean nightOpen;
     private boolean emergency;
-
-
+    private int page;
 
     public Map<String, Object> createFilterMap() {
         LocalDate nowDate = LocalDate.now();
@@ -37,6 +36,7 @@ public class HospitalFilterReqDto {
         filterMap.put("hospitalOpen", hospitalOpen ? now : LocalTime.of(10, 00, 00));
         filterMap.put("nightOpen", nightOpen ? night : LocalTime.of(10, 00, 00));
         filterMap.put("emergency", emergency ? 0 : 1);
+        filterMap.put("page", page);
 
         return filterMap;
     }

@@ -46,6 +46,9 @@ public class HospitalServiceImpl implements HospitalService{
         List<HospitalRespDto> hospitalRespDtoList = new ArrayList<>();
         Map<String, Object> filterMap = hospitalFilterReqDto.createFilterMap();
 //        filterMap.put("dayOfWeek", hospitalFilterReqDto.getDayOfWeek());
+        int page = (hospitalFilterReqDto.getPage() -1) * 5;
+        filterMap.put("page", page);
+        System.out.println("hospitalFilterReqDto = " + page);
         System.out.println("filterMap = " + filterMap);
 
         System.out.println("hospitalFilterReqDto = " + hospitalRepository.getHospitalList(filterMap));

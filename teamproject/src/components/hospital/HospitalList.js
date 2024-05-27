@@ -2,12 +2,9 @@ import styles from "../../css/hospital/HospitalList.module.css";
 
 function HospitalList({hospitalList, index, department}) {
 
-    let test = () => {
-        console.log(hospitalList);
-    }
     return (
         <>
-            <div role="button" key={index} onClick={test}>
+            <div role="button" key={index}>
                 <a href={`/hospitals/${hospitalList.hospitalId}`}>
                     <li className={styles.hospitalListLi}>
                         <div className={styles.hospitalListDetailBox}>
@@ -28,7 +25,7 @@ function HospitalList({hospitalList, index, department}) {
                             </div>
                         </div>
                         <div className={styles.hospitalListDetailLocationBox}>
-                            <span className={styles.hospitalListDetailLocation}>{hospitalList.hospitalOrganLoc}</span>
+                            {hospitalList.hospitalOrganLoc != "" ? <span className={styles.hospitalListDetailLocation}>{hospitalList.hospitalOrganLoc}</span> : <div></div>}
                         </div>
                     </li>
                 </a>

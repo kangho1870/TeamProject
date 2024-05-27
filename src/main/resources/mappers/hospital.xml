@@ -41,8 +41,7 @@
             hoh.end_time > #{nightOpen}
             AND
             hsp.hospital_emergency = #{emergency}
-        LIMIT 20;
-
+        LIMIT #{page}, 5;
     </select>
 
 </mapper>

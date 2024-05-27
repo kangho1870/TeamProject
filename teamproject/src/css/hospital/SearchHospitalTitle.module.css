@@ -9,6 +9,7 @@
     align-items: center;
     padding: 6px 24px 6px 16px;
     z-index: 260;
+    background: white;
 }
 
 .backBtn {

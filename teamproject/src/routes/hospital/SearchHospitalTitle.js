@@ -2,71 +2,85 @@ import Category from "../../components/common/Category";
 import styles from '../../css/hospital/SearchHospital.module.css';
 import HospitalStyles from '../../css/hospital/SearchHospitalTitle.module.css';
 import HospitalList from '../../components/hospital/HospitalList';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import axios from "axios";
+
 function SearchHospitalTitle() {
-
     const params = new URLSearchParams(window.location.search);
+    let department = params.get("keyword");
 
-    let hospitals = ["a", "b" ,"c"];
-    let [hospitalList, setHospitalList] = useState([]);
-    
-    const [filter, setFilter] = useState([
-        {
-            userAddress: "연제구",
-            hospitalOpen: false,
-            nightOpen: false,
-            emergency: false
-        }
-    ]);
+    const [hospitalList, setHospitalList] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const observer = useRef();
+    const mainContext = document.querySelector("#mainContext");
+
+    const [filter, setFilter] = useState({
+        userAddress: "연제구",
+        hospitalOpen: false,
+        nightOpen: false,
+        emergency: false,
+        page: 1
+    });
+
+    let filterBtns = [filter.userAddress, "hospitalOpen", "nightOpen", "emergency"];
+    const [filterBtnClickStatus, setFilterBtnClickStatus] = useState([true, false, false, false]);
 
     useEffect(() => {
-        axios.post(`/hospitals`, filter[0], {
+        loadData();
+    }, [filter]);
+
+    const loadData = () => {
+        setLoading(true);
+        axios.post(`/hospitals`, filter, {
             headers: {
                 "Content-Type": 'application/json'
             }
         })
         .then(response => {
-            let copy = [...hospitalList, response.data];
-            setHospitalList(copy);
+            setHospitalList(prevList => [...prevList, ...response.data.data]);
+            setLoading(false);
         })
         .catch(error => {
             console.error("에러 발생:", error);
+            setLoading(false);
         });
-    }, [])
-
-    console.log(hospitalList)
-
-    let filterBtns = [filter[0].userAddress, "hospitalOpen", "nightOpen", "emergency"];
-    let [filterBtnClickStatus, setFilterBtnClickStatus] = useState([true, false, false, false]);
-    
+    };
 
     const toggleActive = (item, index) => {
         let copyBtnsStatus = [...filterBtnClickStatus];
         copyBtnsStatus[index] = !copyBtnsStatus[index];
         setFilterBtnClickStatus(copyBtnsStatus);
-    
-        // 업데이트된 filter 복사본 생성
-        let copyFilter = [...filter];
-    
-        // 복사본 내 필터 값 업데이트
-        if (typeof copyFilter[0][item] === "boolean") {
-            copyFilter[0][item] = !copyFilter[0][item];
+
+        let copyFilter = { ...filter };
+        if (typeof copyFilter[item] === "boolean") {
+            copyFilter[item] = !copyFilter[item];
         }
-    
-        // 업데이트된 filter 상태로 설정
-        setFilter(copyFilter);
+        setFilter({
+            ...copyFilter,
+            page: 1 // 필터가 변경될 때 페이지를 1로 초기화
+        });
+        setHospitalList([]); // 필터 변경 시 병원 목록 초기화
     };
 
-    let department = params.get("keyword");
-
-    
+    const lastHospitalElementRef = useCallback(node => {
+        if (loading) return;
+        if (observer.current) observer.current.disconnect();
+        observer.current = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) {
+                setFilter(prevFilter => ({
+                    ...prevFilter,
+                    page: prevFilter.page + 1
+                }));
+            }
+        });
+        if (node) observer.current.observe(node);
+    }, [loading]);
 
     return (
         <>
             <div className='container'>
                 <Category></Category>
-                <div className={styles.mainContextTop}>
+                <div className={styles.mainContextTop} id="mainContext">
                     <div className={styles.mainNavSmall}>
                         <div role="button" className={styles.smallNav}>
                             <a href="/"><p>홈</p></a>
@@ -85,38 +99,38 @@ function SearchHospitalTitle() {
                         </div>
                     </div>
                     <div className={HospitalStyles.searchBox}>
-                        <button className={HospitalStyles.backBtn}><i class="fa-solid fa-angle-left"></i></button>
+                        <button className={HospitalStyles.backBtn}><i className="fa-solid fa-angle-left"></i></button>
                         <div className={HospitalStyles.searchInputBox}>
                             <form>
                                 <input placeholder='지역+과목명, 병원명을 입력해주세요.' className={HospitalStyles.searchInput} value={department}></input>
-                                <button type='submit' className={HospitalStyles.searchInputBtn}><i class="fa-solid fa-magnifying-glass"></i></button>
+                                <button type='submit' className={HospitalStyles.searchInputBtn}><i className="fa-solid fa-magnifying-glass"></i></button>
                             </form>
                         </div>
                     </div>
                     <section>
                         <div className={HospitalStyles.selectSubMenu}>
                             <div className={HospitalStyles.filterBox}>
-                                <button className={HospitalStyles.filterBtn}><i class="fa-solid fa-sliders"></i></button>
+                                <button className={HospitalStyles.filterBtn}><i className="fa-solid fa-sliders"></i></button>
                             </div>
                             <div className={HospitalStyles.filterBtnBox}>
                                 <button className={HospitalStyles.detailfilterBtnBox}>
                                     <span>가까운 순</span>
                                     <div>
                                         <div className={HospitalStyles.menuDown}>
-                                            <span><i class="fa-solid fa-angle-down"></i></span>
+                                            <span><i className="fa-solid fa-angle-down"></i></span>
                                         </div>
                                     </div>
                                 </button>
                                 {filterBtns.map((v, i) => (
                                     <button
                                         key={i} 
-                                        className={`${HospitalStyles.detailfilterBtnBox} ${filterBtnClickStatus[i] ? HospitalStyles.activeBtn : ""} ${i == 0 ? HospitalStyles.activeBtn : ""}`}
+                                        className={`${HospitalStyles.detailfilterBtnBox} ${filterBtnClickStatus[i] ? HospitalStyles.activeBtn : ""} ${i === 0 ? HospitalStyles.activeBtn : ""}`}
                                         onClick={() => toggleActive(v, i)}
                                     >
-                                        {i == 0 ? 
+                                        {i === 0 ? 
                                             <>
                                                 <div>
-                                                    <span className={HospitalStyles.btnSpan}><i class="fa-solid fa-location-crosshairs"></i></span>
+                                                    <span className={HospitalStyles.btnSpan}><i className="fa-solid fa-location-crosshairs"></i></span>
                                                 </div>
                                                 <span className={HospitalStyles.btnSpan}>
                                                     {v}
@@ -124,43 +138,37 @@ function SearchHospitalTitle() {
                                             </>
                                             : 
                                             <>
-                                                <span className={filterBtnClickStatus[i] == true ? HospitalStyles.btnSpan : ""}>
-                                                    {v == "hospitalOpen" ? "진료 중"
-                                                                        : v == "nightOpen" ? "야간진료"
-                                                                        : v == "emergency" ? "응급병동" : ""
+                                                <span className={filterBtnClickStatus[i] === true ? HospitalStyles.btnSpan : ""}>
+                                                    {v === "hospitalOpen" ? "진료 중"
+                                                        : v === "nightOpen" ? "야간진료"
+                                                        : v === "emergency" ? "응급병동" : ""
                                                     }
                                                 </span>
                                             </>
                                         }
-                                        
                                     </button>
                                 ))}
                             </div>
                         </div>
                         {
-                            hospitalList[0] && (
+                            hospitalList.length > 0 && (   
                                 <section className={HospitalStyles.hospitalListSection}>
-                                    {console.log(hospitalList[0])}
                                     <div>
                                         <ul className={HospitalStyles.hospitalListUl}>
-                                            {hospitalList.data.map((v, i) => {
-                                                console.log(hospitalList);
-                                                <HospitalList hospitalList={v} index={i} department={department} key={i}></HospitalList>
-                                            })}
+                                            {hospitalList.map((v, i) => (
+                                                <HospitalList 
+                                                    hospitalList={v}
+                                                    index={i}
+                                                    department={department}
+                                                    key={i}
+                                                    ref={hospitalList.length === i + 1 ? lastHospitalElementRef : null}
+                                                ></HospitalList>
+                                            ))}
                                         </ul>
                                     </div>
                                 </section>
-                            )
-                        }
-                        {/* <section className={HospitalStyles.hospitalListSection}>
-                            <div>
-                                <ul className={HospitalStyles.hospitalListUl}>
-                                    {hospitalList.map((v, i) => (
-                                        <HospitalList hospitalList={v} index={i} department={department}></HospitalList>
-                                    ))}
-                                </ul>
-                            </div>
-                        </section> */}
+                            )}
+                            {loading && <div>Loading...</div>}
                     </section>
                 </div>
             </div>
