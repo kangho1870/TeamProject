@@ -30,8 +30,6 @@ public class ApiRestController {
             throw new RuntimeException(e);
         }
 
-        System.out.println("data = " + data);
-
         try {
             apiService.saveData(data);
         } catch (Exception e) {

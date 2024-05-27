@@ -66,25 +66,38 @@ public class ApiService {
 
         // 4. hospital_time add
         for(int i = 0; i < itemList.size(); i++) {
-            Map<String, Object> timeList = new HashMap<>();
+            Map<String, Object> hospitalData = itemList.get(i);
 
-            timeList.put("id", (i + 1));
-            timeList.put("hospitalName", itemList.get(i).get("instit_nm"));
-            timeList.put("Monday", itemList.get(i).get("Monday"));
-            timeList.put("Tuesday", itemList.get(i).get("Tuesday"));
-            timeList.put("Wednesday", itemList.get(i).get("Wednesday"));
-            timeList.put("Thursday", itemList.get(i).get("Thursday"));
-            timeList.put("Friday", itemList.get(i).get("Friday"));
-            timeList.put("Saturday", itemList.get(i).get("Saturday"));
-            timeList.put("Sunday", itemList.get(i).get("Sunday"));
-            timeList.put("holiday", itemList.get(i).get("holiday"));
+            String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "holiday"};
+            for (String day : days) {
+                String hours = (String) hospitalData.get(day);
+                if (hours != null && hours.contains("~")) {
+                    String[] times = hours.split("~");
 
-            System.out.println("timeList = " + timeList.get("hospitalName"));
-            apiRepository.addTime(timeList);
+                    // 길이 검사 추가
+                    if (times.length == 2) {
+                        String startTime = times[0].trim();
+                        String endTime = times[1].trim();
+
+                        if (!startTime.isEmpty() && !endTime.isEmpty()) {
+                            Map<String, Object> timeList = new HashMap<>();
+                            timeList.put("id", (i + 1)); // 기존 ID 설정 유지
+                            timeList.put("hospitalName", hospitalData.get("instit_nm"));
+                            timeList.put("dayOfWeek", day.toUpperCase());
+                            timeList.put("startTime", startTime + ":00");
+                            timeList.put("endTime", endTime + ":00");
+
+                            // MyBatis를 사용하여 데이터 삽입
+                            apiRepository.addTime(timeList);
+                        }
+                    } else {
+                        System.out.println("Invalid hours format for " + day + ": " + hours);
+                    }
+                } else {
+                    System.out.println("No valid hours for " + day + " in hospital " + hospitalData.get("instit_nm"));
+                }
+            }
         }
-
-
-
         return true;
     }
 }
