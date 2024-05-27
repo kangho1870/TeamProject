@@ -1,7 +1,3 @@
-import Category from './components/common/Category';
-import './App.css';
-
-
 import Community from './routes/community/Community.js'
 import NoticeBoder from './routes/community/NoticeBoder.js';
 import HealthMagzine from './routes/community/HealthMagzine.js';
