@@ -2,19 +2,18 @@ import Category from "../../components/common/Category";
 import styles from '../../css/hospital/SearchHospital.module.css';
 import HospitalStyles from '../../css/hospital/SearchHospitalTitle.module.css';
 import HospitalList from '../../components/hospital/HospitalList';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import axios from "axios";
 
 function SearchHospitalTitle() {
     const params = new URLSearchParams(window.location.search);
     let department = params.get("keyword");
+    let [totalPage, setTotalPage] = useState(1);
 
     const [hospitalList, setHospitalList] = useState([]);
     const [loading, setLoading] = useState(false);
-    const observer = useRef();
-    const mainContext = document.querySelector("#mainContext");
-
     const [filter, setFilter] = useState({
+        department: department,
         userAddress: "연제구",
         hospitalOpen: false,
         nightOpen: false,
@@ -24,6 +23,7 @@ function SearchHospitalTitle() {
 
     let filterBtns = [filter.userAddress, "hospitalOpen", "nightOpen", "emergency"];
     const [filterBtnClickStatus, setFilterBtnClickStatus] = useState([true, false, false, false]);
+    const hospitalListRef = useRef(null);
 
     useEffect(() => {
         loadData();
@@ -37,7 +37,27 @@ function SearchHospitalTitle() {
             }
         })
         .then(response => {
+            let totalCount = response.data.data[0].totalCount;
+            setTotalPage(totalCount % 20 == 0 ? totalCount / 20 : Math.floor(totalCount / 20) + 1);
+
+            console.log(filter.page)
+            console.log(totalCount)
+            console.log(totalPage)
+            if (filter.page > totalPage) {
+                // 더 이상 데이터가 없는 경우
+                // 예를 들어, 페이지를 변경하지 않고 데이터를 더 가져오는 경우에 이런 상황이 발생할 수 있습니다.
+                // 이 경우에는 더 이상 Intersection Observer를 활성화하지 않습니다.
+                setLoading(false);
+                return;
+            }
+
             setHospitalList(prevList => [...prevList, ...response.data.data]);
+
+            setFilter(prevFilter => ({
+                ...prevFilter,
+                page: prevFilter.page + 1
+            }));
+
             setLoading(false);
         })
         .catch(error => {
@@ -57,30 +77,46 @@ function SearchHospitalTitle() {
         }
         setFilter({
             ...copyFilter,
-            page: 1 // 필터가 변경될 때 페이지를 1로 초기화
+            page: 1
         });
-        setHospitalList([]); // 필터 변경 시 병원 목록 초기화
+        setTotalPage(1);
+        setHospitalList([]);
     };
 
-    const lastHospitalElementRef = useCallback(node => {
-        if (loading) return;
-        if (observer.current) observer.current.disconnect();
-        observer.current = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting) {
-                setFilter(prevFilter => ({
-                    ...prevFilter,
-                    page: prevFilter.page + 1
-                }));
+    useEffect(() => {
+        const handleScroll = () => {
+            const observer = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting && !loading) {
+                    loadData()
+                }
+            }, {
+                root: null,
+                rootMargin: '20px',
+                threshold: 1
+            });
+    
+            if (hospitalListRef.current) {
+                observer.observe(hospitalListRef.current);
             }
-        });
-        if (node) observer.current.observe(node);
-    }, [loading]);
+    
+            return () => {
+                if (hospitalListRef.current) {
+                    observer.unobserve(hospitalListRef.current);
+                }
+            };
+        };
+    
+        handleScroll(); // 최초 한 번만 호출
+
+    }, [])
+
+    
 
     return (
         <>
             <div className='container'>
-                <Category></Category>
-                <div className={styles.mainContextTop} id="mainContext">
+                <Category/>
+                <div className={styles.mainContextTop}>
                     <div className={styles.mainNavSmall}>
                         <div role="button" className={styles.smallNav}>
                             <a href="/"><p>홈</p></a>
@@ -154,16 +190,16 @@ function SearchHospitalTitle() {
                             hospitalList.length > 0 && (   
                                 <section className={HospitalStyles.hospitalListSection}>
                                     <div>
-                                        <ul className={HospitalStyles.hospitalListUl}>
+                                        <ul className={`${HospitalStyles.hospitalListUl}`}>
                                             {hospitalList.map((v, i) => (
                                                 <HospitalList 
                                                     hospitalList={v}
                                                     index={i}
                                                     department={department}
                                                     key={i}
-                                                    ref={hospitalList.length === i + 1 ? lastHospitalElementRef : null}
                                                 ></HospitalList>
                                             ))}
+                                            <div ref={hospitalListRef}></div>
                                         </ul>
                                     </div>
                                 </section>
@@ -173,7 +209,7 @@ function SearchHospitalTitle() {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 export default SearchHospitalTitle;

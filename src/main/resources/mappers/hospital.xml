@@ -26,8 +26,9 @@
             DISTINCT hsp.hospital_id,
             hsp.hospital_name,
             hsp.hospital_address,
-            hsp.hospital_organ_loc
-            FROM hospital AS hsp
+            hsp.hospital_organ_loc,
+            COUNT(*) OVER() AS total_count
+        FROM hospital AS hsp
         LEFT OUTER JOIN hospital_operating_hours hoh ON (hsp.hospital_id = hoh.hospital_id)
         WHERE
             hsp.hospital_type != '약국'
@@ -41,7 +42,7 @@
             hoh.end_time > #{nightOpen}
             AND
             hsp.hospital_emergency = #{emergency}
-        LIMIT #{page}, 5;
+        LIMIT #{page}, 20;
     </select>
 
 </mapper>

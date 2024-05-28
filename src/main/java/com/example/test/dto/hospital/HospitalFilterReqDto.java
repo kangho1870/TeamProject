@@ -15,6 +15,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class HospitalFilterReqDto {
+    private String department;
     private String userAddress;
     private boolean hospitalOpen;
     private boolean nightOpen;
@@ -30,6 +31,7 @@ public class HospitalFilterReqDto {
         LocalTime night = LocalTime.of(19, 00, 00);
         Map<String, Object> filterMap = new HashMap<String, Object>();
 
+        filterMap.put("department", department);
         filterMap.put("dayOfWeek", dayOfWeek);
         filterMap.put("address", userAddress);
         filterMap.put("nowDay", nowDate.format(dateFormatter));

@@ -17,6 +17,7 @@ public class Hospital {
     private String hospital_phone;
     private double hospital_latitude;
     private double hospital_longitude;
+    private int total_count;
 
     public HospitalRespDto toHospitalRespDto() {
         return HospitalRespDto.builder()
@@ -27,6 +28,7 @@ public class Hospital {
                 .hospitalPhone(hospital_phone)
                 .hospitalLatitude(hospital_latitude)
                 .hospitalLongitude(hospital_longitude)
+                .totalCount(total_count)
                 .build();
     }
 }

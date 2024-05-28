@@ -13,6 +13,7 @@ import Mypage from "./routes/hospital/mypage/Mypage.js";
 import Pharmacy from './routes/hospital/pharmacy/Pharmacy.js';
 import MainPage from './routes/hospital/mainPage/MainPage.js';
 import HospitalAdmin from './routes/hospital/hospitalAdmin/HospitalAdmin.js';
+import './App.css';
 function App() {
   return (
     <>

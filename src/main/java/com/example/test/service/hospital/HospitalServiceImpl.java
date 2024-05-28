@@ -46,9 +46,10 @@ public class HospitalServiceImpl implements HospitalService{
         List<HospitalRespDto> hospitalRespDtoList = new ArrayList<>();
         Map<String, Object> filterMap = hospitalFilterReqDto.createFilterMap();
 //        filterMap.put("dayOfWeek", hospitalFilterReqDto.getDayOfWeek());
-        int page = (hospitalFilterReqDto.getPage() -1) * 5;
+        int page = (hospitalFilterReqDto.getPage() -1) * 20;
         filterMap.put("page", page);
-        System.out.println("hospitalFilterReqDto = " + page);
+        System.out.println("hospitalFilterReqDto.getPage() = " + hospitalFilterReqDto.getPage());
+        System.out.println(page + " +1 번째 부터");
         System.out.println("filterMap = " + filterMap);
 
         System.out.println("hospitalFilterReqDto = " + hospitalRepository.getHospitalList(filterMap));

@@ -21,4 +21,5 @@ public class HospitalRespDto {
     private String hospitalPhone;
     private double hospitalLatitude;
     private double hospitalLongitude;
+    private int totalCount;
 }

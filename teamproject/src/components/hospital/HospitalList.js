@@ -1,7 +1,6 @@
 import styles from "../../css/hospital/HospitalList.module.css";
 
-function HospitalList({hospitalList, index, department}) {
-
+const HospitalList = (({ hospitalList, index, department }) => {
     return (
         <>
             <div role="button" key={index}>
@@ -30,9 +29,8 @@ function HospitalList({hospitalList, index, department}) {
                     </li>
                 </a>
             </div>
-        
         </>
     )
-}
+});
 
 export default HospitalList;
