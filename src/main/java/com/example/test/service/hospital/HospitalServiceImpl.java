@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -53,9 +54,34 @@ public class HospitalServiceImpl implements HospitalService{
         System.out.println("filterMap = " + filterMap);
 
         System.out.println("hospitalFilterReqDto = " + hospitalRepository.getHospitalList(filterMap));
-        hospitalRepository.getHospitalList(filterMap).forEach(hospital -> {
-            hospitalRespDtoList.add(hospital.toHospitalRespDto());
+
+//        List<Hospital> hospitalList = hospitalRepository.getHospitalList(filterMap);
+//
+//        List<Integer> hospitalIds = hospitalList.stream()
+//                .map(Hospital::getHospital_id)
+//                .collect(Collectors.toList());
+//        List<Hospital> hospitalCategory = hospitalRepository.getHospitalCategory(hospitalIds);
+        List<String> hospitalDepartMent =  new ArrayList<>();
+
+        List<Hospital> hospitalList = hospitalRepository.getHospitalList(filterMap);
+
+
+        hospitalList.forEach(hospital -> {
+            // 각 병원에 대한 카테고리 리스트 생성
+            List<String> hospitalDepartMentForHospital = new ArrayList<>();
+
+            // 카테고리 추가
+            hospitalDepartMentForHospital.add(hospital.getHospital_category_name());
+
+            // HospitalRespDto 객체 생성 및 설정
+            HospitalRespDto hospitalRespDto = hospital.toHospitalRespDto();
+            hospitalRespDto.setHospitalCategory(hospitalDepartMentForHospital);
+
+            // 리스트에 추가
+            hospitalRespDtoList.add(hospitalRespDto);
         });
+
+        System.out.println("hospitalDepartMent = " + hospitalDepartMent);
 
 
         return hospitalRespDtoList;

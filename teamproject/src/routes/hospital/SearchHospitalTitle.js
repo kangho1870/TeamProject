@@ -2,14 +2,14 @@ import Category from "../../components/common/Category";
 import styles from '../../css/hospital/SearchHospital.module.css';
 import HospitalStyles from '../../css/hospital/SearchHospitalTitle.module.css';
 import HospitalList from '../../components/hospital/HospitalList';
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axios from "axios";
 
 function SearchHospitalTitle() {
     const params = new URLSearchParams(window.location.search);
     let department = params.get("keyword");
-    let [totalPage, setTotalPage] = useState(1);
-
+    const [totalPage, setTotalPage] = useState(1);
+    const [page, setPage] = useState(1);
     const [hospitalList, setHospitalList] = useState([]);
     const [loading, setLoading] = useState(false);
     const [filter, setFilter] = useState({
@@ -21,43 +21,25 @@ function SearchHospitalTitle() {
         page: 1
     });
 
-    let filterBtns = [filter.userAddress, "hospitalOpen", "nightOpen", "emergency"];
+    const filterBtns = [filter.userAddress, "hospitalOpen", "nightOpen", "emergency"];
     const [filterBtnClickStatus, setFilterBtnClickStatus] = useState([true, false, false, false]);
     const hospitalListRef = useRef(null);
 
-    useEffect(() => {
-        loadData();
-    }, [filter]);
-
-    const loadData = () => {
+    const loadData = (newPage) => {
         setLoading(true);
-        axios.post(`/hospitals`, filter, {
+        axios.post(`/hospitals`, { ...filter, page: newPage }, {
             headers: {
                 "Content-Type": 'application/json'
             }
         })
         .then(response => {
-            let totalCount = response.data.data[0].totalCount;
-            setTotalPage(totalCount % 20 == 0 ? totalCount / 20 : Math.floor(totalCount / 20) + 1);
-
-            console.log(filter.page)
-            console.log(totalCount)
-            console.log(totalPage)
-            if (filter.page > totalPage) {
-                // 더 이상 데이터가 없는 경우
-                // 예를 들어, 페이지를 변경하지 않고 데이터를 더 가져오는 경우에 이런 상황이 발생할 수 있습니다.
-                // 이 경우에는 더 이상 Intersection Observer를 활성화하지 않습니다.
-                setLoading(false);
-                return;
+            const data = response.data.data;
+            if(data.length > 0) {
+                const totalCount = data[0].totalCount;
+                setTotalPage(Math.ceil(totalCount / 20));
+                setHospitalList(prevList => [...prevList, ...data]);
+                console.log(data)
             }
-
-            setHospitalList(prevList => [...prevList, ...response.data.data]);
-
-            setFilter(prevFilter => ({
-                ...prevFilter,
-                page: prevFilter.page + 1
-            }));
-
             setLoading(false);
         })
         .catch(error => {
@@ -67,55 +49,55 @@ function SearchHospitalTitle() {
     };
 
     const toggleActive = (item, index) => {
-        let copyBtnsStatus = [...filterBtnClickStatus];
+        const copyBtnsStatus = [...filterBtnClickStatus];
         copyBtnsStatus[index] = !copyBtnsStatus[index];
         setFilterBtnClickStatus(copyBtnsStatus);
 
-        let copyFilter = { ...filter };
+        const copyFilter = { ...filter };
         if (typeof copyFilter[item] === "boolean") {
             copyFilter[item] = !copyFilter[item];
         }
-        setFilter({
-            ...copyFilter,
-            page: 1
-        });
-        setTotalPage(1);
+        setFilter({ ...copyFilter, page: 1 });
+        setPage(1);
         setHospitalList([]);
     };
 
     useEffect(() => {
-        const handleScroll = () => {
-            const observer = new IntersectionObserver(entries => {
-                if (entries[0].isIntersecting && !loading) {
-                    loadData()
-                }
-            }, {
-                root: null,
-                rootMargin: '20px',
-                threshold: 1
-            });
-    
-            if (hospitalListRef.current) {
-                observer.observe(hospitalListRef.current);
+        loadData(1);
+    }, [filter]);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(entries => {
+            if(entries[0].isIntersecting && page < totalPage && !loading) {
+                setPage(prevPage => prevPage + 1);
             }
-    
-            return () => {
-                if (hospitalListRef.current) {
-                    observer.unobserve(hospitalListRef.current);
-                }
-            };
+        }, {
+            root: null,
+            rootMargin: '20px',
+            threshold: 1
+        });
+
+        if(hospitalListRef.current) {
+            observer.observe(hospitalListRef.current);
+        }
+
+        return () => {
+            if(hospitalListRef.current) {
+                observer.unobserve(hospitalListRef.current);
+            }
         };
-    
-        handleScroll(); // 최초 한 번만 호출
+    }, [hospitalList, page, totalPage, loading]);
 
-    }, [])
-
-    
+    useEffect(() => {
+        if(page > 1) {
+            loadData(page);
+        }
+    }, [page]);
 
     return (
         <>
             <div className='container'>
-                <Category/>
+                <Category />
                 <div className={styles.mainContextTop}>
                     <div className={styles.mainNavSmall}>
                         <div role="button" className={styles.smallNav}>
@@ -138,7 +120,7 @@ function SearchHospitalTitle() {
                         <button className={HospitalStyles.backBtn}><i className="fa-solid fa-angle-left"></i></button>
                         <div className={HospitalStyles.searchInputBox}>
                             <form>
-                                <input placeholder='지역+과목명, 병원명을 입력해주세요.' className={HospitalStyles.searchInput} value={department}></input>
+                                <input placeholder='지역+과목명, 병원명을 입력해주세요.' className={HospitalStyles.searchInput} value={department}/>
                                 <button type='submit' className={HospitalStyles.searchInputBtn}><i className="fa-solid fa-magnifying-glass"></i></button>
                             </form>
                         </div>
@@ -159,7 +141,7 @@ function SearchHospitalTitle() {
                                 </button>
                                 {filterBtns.map((v, i) => (
                                     <button
-                                        key={i} 
+                                        key={i}
                                         className={`${HospitalStyles.detailfilterBtnBox} ${filterBtnClickStatus[i] ? HospitalStyles.activeBtn : ""} ${i === 0 ? HospitalStyles.activeBtn : ""}`}
                                         onClick={() => toggleActive(v, i)}
                                     >
@@ -187,24 +169,24 @@ function SearchHospitalTitle() {
                             </div>
                         </div>
                         {
-                            hospitalList.length > 0 && (   
+                            hospitalList.length > 0 && (
                                 <section className={HospitalStyles.hospitalListSection}>
                                     <div>
                                         <ul className={`${HospitalStyles.hospitalListUl}`}>
                                             {hospitalList.map((v, i) => (
-                                                <HospitalList 
+                                                <HospitalList
                                                     hospitalList={v}
                                                     index={i}
                                                     department={department}
                                                     key={i}
                                                 ></HospitalList>
                                             ))}
-                                            <div ref={hospitalListRef}></div>
+                                            {page < totalPage ? <div ref={hospitalListRef}></div> : <div className="test"></div>}
                                         </ul>
                                     </div>
                                 </section>
                             )}
-                            {loading && <div>Loading...</div>}
+                        {loading && <div>Loading...</div>}
                     </section>
                 </div>
             </div>

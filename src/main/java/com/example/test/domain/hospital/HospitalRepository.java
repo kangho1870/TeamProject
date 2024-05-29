@@ -10,4 +10,5 @@ public interface HospitalRepository {
 
     public List<Hospital> getHospitalById(int hospitalId) throws Exception;
     public List<Hospital> getHospitalList(Map<String, Object> map) throws Exception;
+    public List<Hospital> getHospitalCategory(List<Integer> ids) throws Exception;
 }

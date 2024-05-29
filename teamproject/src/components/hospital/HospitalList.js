@@ -1,6 +1,6 @@
 import styles from "../../css/hospital/HospitalList.module.css";
 
-const HospitalList = (({ hospitalList, index, department }) => {
+const HospitalList = (({ hospitalList, index }) => {
     return (
         <>
             <div role="button" key={index}>
@@ -12,7 +12,7 @@ const HospitalList = (({ hospitalList, index, department }) => {
                                     <h3 className={styles.hospitalListDetailTitle}>{hospitalList.hospitalName}</h3>
                                 </div>
                                 <div className={styles.hospitalListDetailDepartmentBox}>
-                                    <span className={styles.hospitalListDetailDepartment}>{department}</span>
+                                    <span className={styles.hospitalListDetailDepartment}>{hospitalList.hospitalCategory}</span>
                                 </div>
                                 <div className={styles.hospitalListDetailAddressBox}>
                                     <div className={styles.hospitalListDetailAddress}>
