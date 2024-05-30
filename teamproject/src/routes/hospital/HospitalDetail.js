@@ -27,7 +27,8 @@ function HospitalDetail() {
     useEffect(() => {
         axios.get(`/hospitals/${hospitalId}`)
             .then(response => {
-                setHospital(response.data);
+                setHospital(response.data.data);
+                console.log(response.data)
             })
             .catch(error => {
                 console.error("error!!", error);
@@ -43,14 +44,14 @@ function HospitalDetail() {
                     <section className={styles.mainTextContext}>
                         <div className={styles.hospitalTitleArea}>
                             <div className={styles.hospitalTitleBox}>
-                                <h1 className={styles.hospitalTitle}>{hospital.data.hospitalName}</h1>
+                                <h1 className={styles.hospitalTitle}>{hospital.hospitalName}</h1>
                                 <div style={{ marginRight: "24px" }}>
                                     <span><i class="fa-solid fa-copy"></i></span>
                                 </div>
                             </div>
                             <ul className={styles.hospitalTitleBoxUl}>
                                 <div className={styles.hospitalTitleBoxUlDiv}>
-                                    <span className={styles.hospitalTitleContents}>{hospital.data.hospitalOrganLoc}</span>
+                                    <span className={styles.hospitalTitleContents}>{hospital.hospitalOrganLoc}</span>
                                 </div>
                             </ul>
                         </div>
@@ -59,20 +60,30 @@ function HospitalDetail() {
                             <div className={styles.hospitalTimeTitleBox}>
                                 <h2 className={styles.hospitalSubTitle}>진료 시간</h2>
                                 <div className={styles.hospitalTimeNoticeBox}>
-                                    <div><i class="fa-solid fa-circle" style={{width:"8px", height:"8px", borderRadius:"4px", marginRight:"5px"}}></i></div>
-                                    <div style={{width:"8px", height:"8px"}}></div>
-                                    <span style={{fontWeight:"500", fontSize:"14px", color:"rgb(113, 118, 122)"}}>확인필요</span>
+                                    
+                                    {hospital.endTime == "" && (
+                                        <>
+                                            <div><i class="fa-solid fa-circle" style={{width:"8px", height:"8px", borderRadius:"4px", marginRight:"5px"}}></i></div>
+                                            <div style={{width:"8px", height:"8px"}}></div>
+                                            <span style={{fontWeight:"500", fontSize:"14px", color:"rgb(113, 118, 122)"}}>확인필요</span>
+                                        </>
+                                    )}
                                 </div>
                                 <button className={styles.hospitalBtn} onClick={() => {setViewTime(true)}}>전체 요일</button>
                             </div>
                             <div className={styles.hospitalTimeBoxArea}>
                                 <div className={styles.hospitalTodayTimeBox}>
                                     <h4 className={styles.hospitalTimeSubTitle}>오늘</h4>
-                                    <span className={styles.hospitalTimeSubTitleSpan} style={{marginBottom: "16px"}}>확인 필요</span>
+                                    {hospital.endTime == "" || hospital.startTime == "" && (
+                                        <>
+                                            <span className={styles.hospitalTimeSubTitleSpan} style={{marginBottom: "16px"}}>확인 필요</span>
+                                        </>
+                                    )}
+                                    <span className={styles.hospitalTimeSubTitleSpan} style={{marginBottom: "16px"}}>{hospital.startTime.substring(0, 5)} ~ {hospital.endTime.substring(0, 5)}</span>
                                 </div>
                                 <div className={styles.hospitalTodayTimeBox}>
                                     <h4 className={styles.hospitalTimeSubTitle}>휴게시간</h4>
-                                    <p className={styles.hospitalTimeSubTitleSpan}>확인 필요</p>
+                                    <span className={styles.hospitalTimeSubTitleSpan}>확인 필요</span>
                                 </div>
                             </div>
                         </div>
@@ -81,11 +92,10 @@ function HospitalDetail() {
                                 <h2 className={styles.hospitalSubTitle}>진료 과목</h2>
                             </div>
                             <ul className={styles.hospitalDepartmentUl}>
-                                {hospital && hospital.data.hospitalCategory.map((v, i) => {
-                                    return (
-                                        <li key={i} className={`${hospital.data.hospitalCategory !== null ? styles.hospitalDepartmentLi : ""}`}>{v || ""}</li>
-                                    )
-                                })}
+                                {hospital && hospital.hospitalCategory.map((v, i) => (
+                                        <li key={i} className={`${hospital.hospitalCategory !== null ? styles.hospitalDepartmentLi : ""}`}>{v || ""}</li>
+                                    ))
+                                }
                             </ul>
                         </div>
                         <div className={styles.hospitalArea}>
@@ -94,12 +104,12 @@ function HospitalDetail() {
                             </div>
                             <div className={styles.hospitalLocationDetailBox}>
                                 <div className={styles.hospitalLocationContentBox}>
-                                    <span className={styles.hospitalLocationContentSpan}>{hospital.data.hospitalAddress}</span>
+                                    <span className={styles.hospitalLocationContentSpan}>{hospital.hospitalAddress}</span>
                                     <button className={styles.hospitalBtn}>복사</button>
                                 </div>
                                 <div className={styles.hospitalLocationMap}>
                                     <div id="map" className={styles.hospitalMap}>
-                                        {hospital && <Kakao latitude={hospital.data.hospitalLatitude} longitude={hospital.data.hospitalLongitude}></Kakao>}
+                                        {hospital && <Kakao latitude={hospital.hospitalLatitude} longitude={hospital.hospitalLongitude}></Kakao>}
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +119,7 @@ function HospitalDetail() {
                                 <h2 className={styles.hospitalSubTitle}>병원 번호</h2>
                             </div>
                             <div className={styles.hospitalPhoneBox}>
-                                <span className={styles.hospitalPhoneSpan}>{hospital.data.hospitalPhone}</span>
+                                <span className={styles.hospitalPhoneSpan}>{hospital.hospitalPhone}</span>
                                 <button className={styles.hospitalBtn}>전화</button>
                             </div>
                         </div>
@@ -123,14 +133,14 @@ function HospitalDetail() {
             )}
             {viewTime && hospital !== null &&
                 <div id="time-modal" onClick={modalClose}>
-                    <AllDayTime></AllDayTime>
+                    <AllDayTime hospital={hospital}></AllDayTime>
                 </div>
             }
                 
             {appointmentView && hospital !== null &&
                 <div id="appointment-modal" onClick={handleContentClick}>
                     <div>
-                        <HospitalAppointment modalClose={modalClose}></HospitalAppointment>
+                        <HospitalAppointment modalClose={modalClose} hospital={hospital}></HospitalAppointment>
                     </div>
                 </div>
                 
@@ -140,9 +150,6 @@ function HospitalDetail() {
 }
 
 function Kakao({latitude, longitude}) {
-    console.log(latitude)
-    console.log(typeof(longitude))
-
     useEffect(() => {
         const container = document.getElementById('map');
         let options = { //지도를 생성할 때 필요한 기본 옵션

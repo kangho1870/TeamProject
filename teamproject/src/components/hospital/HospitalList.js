@@ -1,6 +1,6 @@
 import styles from "../../css/hospital/HospitalList.module.css";
 
-const HospitalList = (({ hospitalList, index }) => {
+const HospitalList = (({ hospitalList, index, nowTime }) => {
     return (
         <>
             <div role="button" key={index}>
@@ -13,6 +13,17 @@ const HospitalList = (({ hospitalList, index }) => {
                                 </div>
                                 <div className={styles.hospitalListDetailDepartmentBox}>
                                     <span className={styles.hospitalListDetailDepartment}>{hospitalList.hospitalCategory}</span>
+                                    <div className={styles.timeInfoBox}>
+                                        <span className={`${hospitalList.endTime.substring(0, 5) > nowTime ? styles.timeIn : styles.timeOut}`}>
+                                            {`${hospitalList.endTime.substring(0, 5) > nowTime ? "● 진료중" : ""}`}
+                                        </span>
+                                        {hospitalList.endTime.substring(0, 5) > nowTime && (
+                                            <>
+                                                <div className={styles.timeDiv}></div>
+                                                <span className={styles.timeInfo}>{`${hospitalList.endTime.substring(0, 5)}`} 까지</span>
+                                            </>
+                                        )}
+                                    </div>
                                 </div>
                                 <div className={styles.hospitalListDetailAddressBox}>
                                     <div className={styles.hospitalListDetailAddress}>

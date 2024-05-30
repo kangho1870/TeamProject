@@ -4,10 +4,12 @@ import HospitalStyles from '../../css/hospital/SearchHospitalTitle.module.css';
 import HospitalList from '../../components/hospital/HospitalList';
 import { useEffect, useState, useRef } from 'react';
 import axios from "axios";
+import moment from "moment";
 
 function SearchHospitalTitle() {
+    const nowTime = moment().format('HH:MM'); 
     const params = new URLSearchParams(window.location.search);
-    let department = params.get("keyword");
+    let [department, setDepartment] = useState(params.get("keyword"));
     const [totalPage, setTotalPage] = useState(1);
     const [page, setPage] = useState(1);
     const [hospitalList, setHospitalList] = useState([]);
@@ -24,6 +26,10 @@ function SearchHospitalTitle() {
     const filterBtns = [filter.userAddress, "hospitalOpen", "nightOpen", "emergency"];
     const [filterBtnClickStatus, setFilterBtnClickStatus] = useState([true, false, false, false]);
     const hospitalListRef = useRef(null);
+
+    const setInput = (e) => {
+        setDepartment(e.target.value);
+    }
 
     const loadData = (newPage) => {
         setLoading(true);
@@ -60,6 +66,7 @@ function SearchHospitalTitle() {
         setFilter({ ...copyFilter, page: 1 });
         setPage(1);
         setHospitalList([]);
+        setFilter({...copyFilter, department: department})
     };
 
     useEffect(() => {
@@ -120,8 +127,8 @@ function SearchHospitalTitle() {
                         <button className={HospitalStyles.backBtn}><i className="fa-solid fa-angle-left"></i></button>
                         <div className={HospitalStyles.searchInputBox}>
                             <form>
-                                <input placeholder='지역+과목명, 병원명을 입력해주세요.' className={HospitalStyles.searchInput} value={department}/>
-                                <button type='submit' className={HospitalStyles.searchInputBtn}><i className="fa-solid fa-magnifying-glass"></i></button>
+                                <input placeholder='지역+과목명, 병원명을 입력해주세요.' className={HospitalStyles.searchInput} value={department} onChange={(e) => setInput(e)}></input>
+                                <button type='button' className={HospitalStyles.searchInputBtn} onClick={toggleActive}><i className="fa-solid fa-magnifying-glass"></i></button>
                             </form>
                         </div>
                     </div>
@@ -178,6 +185,7 @@ function SearchHospitalTitle() {
                                                     hospitalList={v}
                                                     index={i}
                                                     department={department}
+                                                    nowTime={nowTime}
                                                     key={i}
                                                 ></HospitalList>
                                             ))}

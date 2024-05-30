@@ -7,13 +7,13 @@ import com.example.test.dto.hospital.HospitalRespDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,20 +24,26 @@ public class HospitalServiceImpl implements HospitalService{
     @Override
     public HospitalRespDto getHospital(int hospitalId) throws Exception{
         HospitalRespDto hospitalRespDto = new HospitalRespDto();
-        List<String> hospitalDepartMent =  new ArrayList<>();
+        Map<String, Object> data = new HashMap<>();
+        Map<String, Object> time = new HashMap<>();
+        List<String> categorys = new ArrayList<>();
+        LocalDate nowDate = LocalDate.now();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        try {
-            List<Hospital> hospitalByIdList = hospitalRepository.getHospitalById(hospitalId);
-            for(Hospital hospital : hospitalByIdList) {
-                hospitalDepartMent.add(hospital.getHospital_category_name());
-            }
-            hospitalRespDto = hospitalByIdList.get(0).toHospitalRespDto();
-            hospitalRespDto.setHospitalCategory(hospitalDepartMent);
-            return hospitalRespDto;
+        data.put("hospitalId", hospitalId);
+        data.put("nowDate", nowDate.format(dateFormatter));
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        List<Hospital> hospitalTimeById = hospitalRepository.getHospitalTimeById(data);
+        for(Hospital hospital : hospitalTimeById){
+            time.put(hospital.getDay_of_week(), hospital.getStart_time() + "~" + hospital.getEnd_time());
         }
+
+        Hospital hospital = hospitalRepository.getHospitalById(data);
+        categorys.add(hospital.getHospital_category_name());
+        hospitalRespDto = hospital.toHospitalRespDto();
+
+        hospitalRespDto.setHospitalCategory(categorys);
+        hospitalRespDto.setTime(time);
 
         return hospitalRespDto;
     }

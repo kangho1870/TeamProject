@@ -136,3 +136,14 @@ textarea {
     color: rgb(0, 0, 0);
     margin-bottom: 16px;
 }
+
+.appointmentTimeBtnSelected {
+    width: 130px;
+    height: 40px;
+    align-items: center;
+    text-align: center;
+    overflow-y: scroll;
+    color: white;
+    background-color: rgb(2, 18, 2);
+    border-radius: 10px;
+}

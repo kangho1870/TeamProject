@@ -5,8 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -21,5 +23,8 @@ public class HospitalRespDto {
     private String hospitalPhone;
     private double hospitalLatitude;
     private double hospitalLongitude;
+    private Time startTime;
+    private Time endTime;
     private int totalCount;
+    private Map<String, Object> time;
 }
