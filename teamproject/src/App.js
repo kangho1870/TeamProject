@@ -30,7 +30,6 @@ function App() {
         <Route path='/Login' element={<Login></Login>}></Route>
         <Route path='/magzine' element={<Magzine></Magzine>}></Route>
 
-        <Route path='hospitals/:hospitalId/appointment' element={<HospitalAppointment></HospitalAppointment>}></Route>
         <Route path='/hospitalAdmin' element={<HospitalAdmin></HospitalAdmin>}></Route>
 
         <Route path='/pharmacys' element={<Pharmacy></Pharmacy>}></Route>

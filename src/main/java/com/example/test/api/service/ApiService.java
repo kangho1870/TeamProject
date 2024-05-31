@@ -74,27 +74,21 @@ public class ApiService {
                 if (hours != null && hours.contains("~")) {
                     String[] times = hours.split("~");
 
-                    // 길이 검사 추가
                     if (times.length == 2) {
                         String startTime = times[0].trim();
                         String endTime = times[1].trim();
 
                         if (!startTime.isEmpty() && !endTime.isEmpty()) {
                             Map<String, Object> timeList = new HashMap<>();
-                            timeList.put("id", (i + 1)); // 기존 ID 설정 유지
+                            timeList.put("id", (i + 1));
                             timeList.put("hospitalName", hospitalData.get("instit_nm"));
                             timeList.put("dayOfWeek", day.toUpperCase());
                             timeList.put("startTime", startTime + ":00");
                             timeList.put("endTime", endTime + ":00");
 
-                            // MyBatis를 사용하여 데이터 삽입
                             apiRepository.addTime(timeList);
                         }
-                    } else {
-                        System.out.println("Invalid hours format for " + day + ": " + hours);
                     }
-                } else {
-                    System.out.println("No valid hours for " + day + " in hospital " + hospitalData.get("instit_nm"));
                 }
             }
         }

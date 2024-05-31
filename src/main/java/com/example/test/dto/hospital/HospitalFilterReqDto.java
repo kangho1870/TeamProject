@@ -39,7 +39,6 @@ public class HospitalFilterReqDto {
         filterMap.put("nightOpen", nightOpen ? night : LocalTime.of(10, 00, 00));
         filterMap.put("emergency", emergency ? 0 : 1);
         filterMap.put("page", page);
-
         return filterMap;
     }
 

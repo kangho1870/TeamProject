@@ -93,4 +93,17 @@
         LEFT OUTER JOIN hospital_operating_hours hoh ON hos.hospital_id = hoh.hospital_id
         WHERE hos.hospital_id = #{hospitalId};
     </select>
+    <insert id="setAppointment" parameterType="com.example.test.domain.hospital.HospitalAppointment">
+        INSERT INTO
+            appointment_hospital
+        VALUES (
+            0,
+            #{user_id},
+            #{hospital_id},
+            #{appointment_date},
+            #{appointment_time},
+            #{appointment_content},
+            NOW()
+        )
+    </insert>
 </mapper>

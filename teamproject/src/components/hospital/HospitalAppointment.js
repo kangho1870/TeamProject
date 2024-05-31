@@ -4,6 +4,7 @@ import Calendar from "react-calendar";
 import '../../css/common/CustomCalendar.module.css';
 import { useEffect, useState } from "react";
 import moment, { locale } from "moment";
+import axios from "axios";
 
 function HospitalAppointment(props) {
     const [date, setDate] = useState(new Date());
@@ -11,7 +12,8 @@ function HospitalAppointment(props) {
     const [endTime, setEndTime] = useState(props.hospital.endTime);
 
     const [timeButtons, setTimeButtons] = useState([]);
-    const [selectTime, setSelectTime] = useState(timeButtons[0]);
+    const [selectTime, setSelectTime] = useState("");
+    const [textValue, setTextValue] = useState("");
 
     useEffect(() => {
         // generateTimeButtons 함수 정의
@@ -19,7 +21,7 @@ function HospitalAppointment(props) {
             const buttons = [];
             let currentTime = moment(startTime, "HH:mm");
             const endTimeObj = moment(endTime, "HH:mm");
-        
+
             // 오전 시간 버튼 생성
             if (moment(startTime, "HH:mm").isBefore(moment("12:00", "HH:mm"))) {
                 while (currentTime.isBefore(moment("12:00", "HH:mm")) && currentTime.isBefore(endTimeObj)) {
@@ -27,18 +29,17 @@ function HospitalAppointment(props) {
                     currentTime.add(30, "minutes"); // 30분 추가
                 }
             }
-        
+
             // 오후 시간 버튼 생성
             currentTime = moment("12:00", "HH:mm");
             while (currentTime.isBefore(endTimeObj)) {
                 buttons.push(currentTime.format("HH:mm"));
                 currentTime.add(30, "minutes"); // 30분 추가
             }
-        
+
             return buttons;
         };
-    
-        console.log(moment(date).format("MM월 DD일"));
+
         const buttons = generateTimeButtons(startTime, endTime);
         setTimeButtons(buttons);
     }, [date, startTime, endTime]);
@@ -50,6 +51,27 @@ function HospitalAppointment(props) {
     const handleModalClick = (e) => {
         e.stopPropagation();
     };
+
+    const inputText = (e) => {
+        setTextValue(e.target.value);
+    }
+
+    const appointment = () => {
+        let appointmentData = {
+            hospitalId: props.hospital.hospitalId,
+            userId: 1,
+            appointmentDay: moment(date).format('YYYY-MM-DD'),
+            appointmentTime: selectTime,
+            appoitnmentContent: textValue
+        }
+        axios.post(`/hospitals/appointment`, appointmentData)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
 
     return (
         <>
@@ -66,10 +88,8 @@ function HospitalAppointment(props) {
                             formatMonthYear={(locale, date) => moment(date).format("YYYY. MM")}
                             formatDay={(locale, date) => moment(date).format('D')}
                             onChange={setDate} value={date}
-                            >
-                        </Calendar>
+                        />
                         <h4 className={styles.appointmentSubTitle}>시간 선택</h4>
-                        <form>
                             <div className={styles.appointmentDayArea}>
                                 <div className={styles.appointmentDayBox}>
                                     <div>
@@ -83,7 +103,12 @@ function HospitalAppointment(props) {
                                     {timeButtons.map((time, index) => (
                                         time <= "12:00" &&
                                         <li key={index} className={styles.appointmentTimeLi}>
-                                            <button onClick={handleTimeButtonClick} className={`${selectTime === time ? styles.appointmentTimeBtnSelected : styles.appointmentTimeBtn}`}>{time}</button>
+                                            <button 
+                                                onClick={(e) => handleTimeButtonClick(time)} 
+                                                className={`${selectTime === time ? styles.appointmentTimeBtnSelected : styles.appointmentTimeBtn}`}
+                                            >
+                                                {time}
+                                            </button>
                                         </li>
                                     ))}
                                 </ul>
@@ -92,7 +117,12 @@ function HospitalAppointment(props) {
                                     {timeButtons.map((time, index) => (
                                         time > "12:00" &&
                                         <li key={index} className={styles.appointmentTimeLi}>
-                                            <button className={styles.appointmentTimeBtn}>{time}</button>
+                                            <button 
+                                                onClick={(e) => handleTimeButtonClick(time)}
+                                                className={`${selectTime === time ? styles.appointmentTimeBtnSelected : styles.appointmentTimeBtn}`}
+                                            >
+                                                {time}
+                                            </button>
                                         </li>
                                     ))}
                                 </ul>
@@ -102,18 +132,17 @@ function HospitalAppointment(props) {
                                     <h4 className={styles.appointmentSubTitle}>증상 및 요청사항</h4>
                                 </div>
                                 <div className={styles.appointmentInputArea}>
-                                    <textarea></textarea>
+                                    <textarea onChange={(e) => inputText(e)} value={textValue}></textarea>
                                 </div>
                             </div>
                             <div className={styles.appointmentBtnBox}>
-                                <button type="submit" className={styles.appointmentBtn}>예약하기</button>
+                                <button className={styles.appointmentBtn} onClick={appointment}>예약하기</button>
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 export default HospitalAppointment;

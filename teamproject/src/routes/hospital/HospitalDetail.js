@@ -139,7 +139,7 @@ function HospitalDetail() {
                 
             {appointmentView && hospital !== null &&
                 <div id="appointment-modal" onClick={handleContentClick}>
-                    <div>
+                    <div onClick={handleContentClick}>
                         <HospitalAppointment modalClose={modalClose} hospital={hospital}></HospitalAppointment>
                     </div>
                 </div>

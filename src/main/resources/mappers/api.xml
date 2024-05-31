@@ -30,8 +30,8 @@
         VALUES
             <foreach collection="list" item="item" separator=",">
                 (
-                0,
-                (#{item})
+                    0,
+                    (#{item})
                 )
             </foreach>
     </insert>

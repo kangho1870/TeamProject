@@ -32,6 +32,8 @@ function SearchHospitalTitle() {
     }
 
     const loadData = (newPage) => {
+        console.log(page)
+        console.log(totalPage)
         setLoading(true);
         axios.post(`/hospitals`, { ...filter, page: newPage }, {
             headers: {
@@ -44,7 +46,6 @@ function SearchHospitalTitle() {
                 const totalCount = data[0].totalCount;
                 setTotalPage(Math.ceil(totalCount / 20));
                 setHospitalList(prevList => [...prevList, ...data]);
-                console.log(data)
             }
             setLoading(false);
         })
@@ -76,6 +77,7 @@ function SearchHospitalTitle() {
     useEffect(() => {
         const observer = new IntersectionObserver(entries => {
             if(entries[0].isIntersecting && page < totalPage && !loading) {
+                console.log("1")
                 setPage(prevPage => prevPage + 1);
             }
         }, {
