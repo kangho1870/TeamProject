@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -33,14 +34,21 @@ public class HospitalController {
         return ResponseEntity.ok().body(new CMRespDto<>(1, "success load", hospitalRespDto));
     }
 
-    @PostMapping("")
-    public ResponseEntity<?> getHospitalList(@RequestBody HospitalFilterReqDto hospitalFilterReqDto) {
+    @GetMapping("")
+    public ResponseEntity<?> getHospitalList(
+            String department,
+            int page,
+            String userAddress,
+            boolean hospitalOpen,
+            boolean nightOpen,
+            boolean emergency
+    ) {
+        System.out.println("page = " + page);
         List<HospitalRespDto> hospitalRespDtoList = new ArrayList<>();
         try {
-            hospitalRespDtoList = hospitalService.getHospitalList(hospitalFilterReqDto);
+            hospitalRespDtoList = hospitalService.getHospitalList(department, page, userAddress, hospitalOpen, nightOpen, emergency);
         } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.ok().body(new CMRespDto<>(-1, "failed load", hospitalRespDtoList));
+            throw new RuntimeException(e);
         }
 
         return ResponseEntity.ok().body(new CMRespDto<>(1, "success load", hospitalRespDtoList));

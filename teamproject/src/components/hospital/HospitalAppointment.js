@@ -5,8 +5,10 @@ import '../../css/common/CustomCalendar.module.css';
 import { useEffect, useState } from "react";
 import moment, { locale } from "moment";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function HospitalAppointment(props) {
+    const navigate = useNavigate();
     const [date, setDate] = useState(new Date());
     const [startTime, setStartTime] = useState(props.hospital.startTime);
     const [endTime, setEndTime] = useState(props.hospital.endTime);
@@ -52,9 +54,6 @@ function HospitalAppointment(props) {
         e.stopPropagation();
     };
 
-    const inputText = (e) => {
-        setTextValue(e.target.value);
-    }
 
     const appointment = () => {
         let appointmentData = {
@@ -62,15 +61,23 @@ function HospitalAppointment(props) {
             userId: 1,
             appointmentDay: moment(date).format('YYYY-MM-DD'),
             appointmentTime: selectTime,
-            appoitnmentContent: textValue
+            appointmentContent: textValue
         }
         axios.post(`/hospitals/appointment`, appointmentData)
             .then(response => {
-                console.log(response)
+                if(response.data.data) {
+                    navigate(`/mypage/appointment`)
+                }
             })
             .catch(error => {
                 console.log(error)
             })
+    }
+
+    const inputText = (e) => {
+        console.log(e.target.value)
+        setTextValue(e.target.value);
+        console.log(textValue)
     }
 
     return (
@@ -132,7 +139,7 @@ function HospitalAppointment(props) {
                                     <h4 className={styles.appointmentSubTitle}>증상 및 요청사항</h4>
                                 </div>
                                 <div className={styles.appointmentInputArea}>
-                                    <textarea onChange={(e) => inputText(e)} value={textValue}></textarea>
+                                    <input className={styles.appointmentInput} onChange={(e) => inputText(e)} value={textValue}></input>
                                 </div>
                             </div>
                             <div className={styles.appointmentBtnBox}>

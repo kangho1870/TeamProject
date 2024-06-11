@@ -2,46 +2,45 @@ import Category from "../../components/common/Category";
 import styles from '../../css/hospital/SearchHospital.module.css';
 import HospitalStyles from '../../css/hospital/SearchHospitalTitle.module.css';
 import HospitalList from '../../components/hospital/HospitalList';
-import { useEffect, useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from "axios";
 import moment from "moment";
 
 function SearchHospitalTitle() {
-    const nowTime = moment().format('HH:MM'); 
+    const nowTime = moment().format('HH:MM');
     const params = new URLSearchParams(window.location.search);
-    let [department, setDepartment] = useState(params.get("keyword"));
+    const initialDepartment = params.get("keyword") || "";
+    const departmentParams = params.get("keyword") || "";
+    const [stopLoad, setStopLoad] = useState(false);
+    const [department, setDepartment] = useState(initialDepartment);
+    const [inputValue, setInputValue] = useState(departmentParams);
     const [totalPage, setTotalPage] = useState(1);
     const [page, setPage] = useState(1);
     const [hospitalList, setHospitalList] = useState([]);
     const [loading, setLoading] = useState(false);
     const [filter, setFilter] = useState({
-        department: department,
         userAddress: "연제구",
         hospitalOpen: false,
         nightOpen: false,
-        emergency: false,
-        page: 1
+        emergency: false
     });
-
-    const filterBtns = [filter.userAddress, "hospitalOpen", "nightOpen", "emergency"];
-    const [filterBtnClickStatus, setFilterBtnClickStatus] = useState([true, false, false, false]);
+    const filterBtns = ["hospitalOpen", "nightOpen", "emergency"];
+    const [filterBtnClickStatus, setFilterBtnClickStatus] = useState([false, false, false]);
     const hospitalListRef = useRef(null);
 
     const setInput = (e) => {
-        setDepartment(e.target.value);
-    }
+
+        setInputValue(e.target.value);
+    };
 
     const loadData = (newPage) => {
-        console.log(page)
-        console.log(totalPage)
         setLoading(true);
-        axios.post(`/hospitals`, { ...filter, page: newPage }, {
-            headers: {
-                "Content-Type": 'application/json'
-            }
+        axios.get(`/hospitals`, {
+            params: { ...filter, department, page: newPage }
         })
         .then(response => {
             const data = response.data.data;
+            console.log(data)
             if(data.length > 0) {
                 const totalCount = data[0].totalCount;
                 setTotalPage(Math.ceil(totalCount / 20));
@@ -60,29 +59,32 @@ function SearchHospitalTitle() {
         copyBtnsStatus[index] = !copyBtnsStatus[index];
         setFilterBtnClickStatus(copyBtnsStatus);
 
-        const copyFilter = { ...filter };
-        if (typeof copyFilter[item] === "boolean") {
-            copyFilter[item] = !copyFilter[item];
-        }
-        setFilter({ ...copyFilter, page: 1 });
+        setFilter(prevFilter => ({
+            ...prevFilter,
+            [item]: !prevFilter[item]
+        }));
+
         setPage(1);
         setHospitalList([]);
-        setFilter({...copyFilter, department: department})
     };
 
     useEffect(() => {
-        loadData(1);
-    }, [filter]);
+        loadData(page);
+    }, [department, filter, page]);
 
     useEffect(() => {
+        console.log(page, totalPage)
+        
         const observer = new IntersectionObserver(entries => {
             if(entries[0].isIntersecting && page < totalPage && !loading) {
-                console.log("1")
                 setPage(prevPage => prevPage + 1);
+                if(page == totalPage) {
+                    setStopLoad(true)
+                }
             }
         }, {
             root: null,
-            rootMargin: '20px',
+            rootMargin: '200px',
             threshold: 1
         });
 
@@ -95,13 +97,14 @@ function SearchHospitalTitle() {
                 observer.unobserve(hospitalListRef.current);
             }
         };
-    }, [hospitalList, page, totalPage, loading]);
+    }, [hospitalList, loading, page]);
 
-    useEffect(() => {
-        if(page > 1) {
-            loadData(page);
-        }
-    }, [page]);
+    
+    const handleSearch = () => {
+        setDepartment(inputValue);
+        setPage(1);
+        setHospitalList([]);
+    };
 
     return (
         <>
@@ -129,8 +132,8 @@ function SearchHospitalTitle() {
                         <button className={HospitalStyles.backBtn}><i className="fa-solid fa-angle-left"></i></button>
                         <div className={HospitalStyles.searchInputBox}>
                             <form>
-                                <input placeholder='지역+과목명, 병원명을 입력해주세요.' className={HospitalStyles.searchInput} value={department} onChange={(e) => setInput(e)}></input>
-                                <button type='button' className={HospitalStyles.searchInputBtn} onClick={toggleActive}><i className="fa-solid fa-magnifying-glass"></i></button>
+                                <input placeholder='지역+과목명, 병원명을 입력해주세요.' className={HospitalStyles.searchInput} value={inputValue} onChange={(e) => setInput(e)}></input>
+                                <button type='button' className={HospitalStyles.searchInputBtn} onClick={handleSearch}><i className="fa-solid fa-magnifying-glass"></i></button>
                             </form>
                         </div>
                     </div>
@@ -148,31 +151,26 @@ function SearchHospitalTitle() {
                                         </div>
                                     </div>
                                 </button>
+                                <button className={`${HospitalStyles.detailfilterBtnBox} ${HospitalStyles.activeBtn}`}>
+                                    <div>
+                                        <span className={HospitalStyles.btnSpan}><i className="fa-solid fa-location-crosshairs"></i></span>
+                                    </div>
+                                    <span className={HospitalStyles.btnSpan}>
+                                        {filter.userAddress}
+                                    </span>
+                                </button>
                                 {filterBtns.map((v, i) => (
                                     <button
                                         key={i}
-                                        className={`${HospitalStyles.detailfilterBtnBox} ${filterBtnClickStatus[i] ? HospitalStyles.activeBtn : ""} ${i === 0 ? HospitalStyles.activeBtn : ""}`}
+                                        className={`${HospitalStyles.detailfilterBtnBox} ${filterBtnClickStatus[i] ? HospitalStyles.activeBtn : ""}`}
                                         onClick={() => toggleActive(v, i)}
                                     >
-                                        {i === 0 ? 
-                                            <>
-                                                <div>
-                                                    <span className={HospitalStyles.btnSpan}><i className="fa-solid fa-location-crosshairs"></i></span>
-                                                </div>
-                                                <span className={HospitalStyles.btnSpan}>
-                                                    {v}
-                                                </span>
-                                            </>
-                                            : 
-                                            <>
-                                                <span className={filterBtnClickStatus[i] === true ? HospitalStyles.btnSpan : ""}>
-                                                    {v === "hospitalOpen" ? "진료 중"
-                                                        : v === "nightOpen" ? "야간진료"
-                                                        : v === "emergency" ? "응급병동" : ""
-                                                    }
-                                                </span>
-                                            </>
-                                        }
+                                        <span className={filterBtnClickStatus[i] === true ? HospitalStyles.btnSpan : ""}>
+                                            {v === "hospitalOpen" ? "진료 중"
+                                                : v === "nightOpen" ? "야간진료"
+                                                : v === "emergency" ? "응급병동" : ""
+                                            }
+                                        </span>
                                     </button>
                                 ))}
                             </div>
@@ -191,7 +189,7 @@ function SearchHospitalTitle() {
                                                     key={i}
                                                 ></HospitalList>
                                             ))}
-                                            {page < totalPage ? <div ref={hospitalListRef}></div> : <div className="test"></div>}
+                                            {!stopLoad && <div className="1" ref={hospitalListRef}></div>}
                                         </ul>
                                     </div>
                                 </section>

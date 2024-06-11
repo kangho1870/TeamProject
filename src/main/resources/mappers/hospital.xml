@@ -56,17 +56,25 @@
         WHERE
             hsp.hospital_type != '약국'
             AND
-            hsp.hospital_address LIKE CONCAT('%', #{address}, '%')
+            hsp.hospital_address LIKE CONCAT('%', #{userAddress}, '%')
             AND
             hoh.day_of_week = DAYNAME(STR_TO_DATE(#{nowDay}, '%Y-%m-%d'))
             AND
-            #{hospitalOpen} BETWEEN hoh.start_time AND hoh.end_time
+            (
+                #{hospitalOpen} = 1 AND #{nowTime} BETWEEN hoh.start_time AND hoh.end_time
+                OR
+                (#{hospitalOpen} = 0)
+            )
             AND
-            hoh.end_time > #{nightOpen}
+            (
+                #{nightOpen} = 1 AND hoh.end_time > '18:00:00'
+                OR
+                (#{nightOpen} = 0)
+            )
             AND
             hsp.hospital_emergency = #{emergency}
             AND
-            hcm.hospital_category_name = #{department}
+            hcm.hospital_category_name LIKE CONCAT('%', #{department}, '%')
         LIMIT #{page}, 20;
     </select>
     <select id="getHospitalCategory" parameterType="java.util.List"
@@ -106,4 +114,5 @@
             NOW()
         )
     </insert>
+
 </mapper>

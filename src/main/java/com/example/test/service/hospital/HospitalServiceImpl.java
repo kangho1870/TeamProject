@@ -9,7 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,13 +52,28 @@ public class HospitalServiceImpl implements HospitalService{
     }
 
     @Override
-    public List<HospitalRespDto> getHospitalList(HospitalFilterReqDto hospitalFilterReqDto) throws Exception {
+    public List<HospitalRespDto> getHospitalList(String department, int page, String userAddress, boolean hospitalOpen, boolean nightOpen, boolean emergency) throws Exception {
         List<HospitalRespDto> hospitalRespDtoList = new ArrayList<>();
-        Map<String, Object> filterMap = hospitalFilterReqDto.createFilterMap();
-        int page = (hospitalFilterReqDto.getPage() -1) * 20;
-        filterMap.put("page", page);
+        Map<String, Object> data = new HashMap<>();
+        LocalDate nowDate = LocalDate.now();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        List<Hospital> hospitalList = hospitalRepository.getHospitalList(filterMap);
+        page = (page - 1) * 20;
+        data.put("page", page);
+        data.put("hospitalOpen", hospitalOpen ? 1 : 0);
+        data.put("nightOpen", nightOpen ? 1 : 0);
+        data.put("emergency", emergency ? 0 : 1);
+        data.put("department", department);
+        data.put("userAddress", userAddress);
+        data.put("saturdayOpen", 0);
+        data.put("sundayOpen", 0);
+        data.put("nowTime", LocalTime.now());
+        data.put("nowDay", nowDate.format(dateFormatter));
+        System.out.println(data.get("page"));
+        System.out.println("data = " + data);
+
+        List<Hospital> hospitalList = hospitalRepository.getHospitalList(data);
+
 
         hospitalList.forEach(hospital -> {
             List<String> hospitalDepartMentForHospital = new ArrayList<>();
@@ -67,6 +84,8 @@ public class HospitalServiceImpl implements HospitalService{
 
             hospitalRespDtoList.add(hospitalRespDto);
         });
+
+        System.out.println("hospitalRespDtoList = " + hospitalRespDtoList);
         return hospitalRespDtoList;
     }
 

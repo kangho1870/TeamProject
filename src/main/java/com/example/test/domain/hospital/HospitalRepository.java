@@ -14,4 +14,5 @@ public interface HospitalRepository {
 
     public List<Hospital> getHospitalTimeById(Map<String, Object> map) throws Exception;
     public int setAppointment(HospitalAppointment hospitalAppointment) throws Exception;
+    public Hospital getTodayOperatingHours(int hospitalId) throws Exception;
 }

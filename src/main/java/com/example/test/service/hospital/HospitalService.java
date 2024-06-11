@@ -8,6 +8,13 @@ import java.util.List;
 
 public interface HospitalService {
     public HospitalRespDto getHospital(int hospitalId) throws Exception;
-    public List<HospitalRespDto> getHospitalList(HospitalFilterReqDto hospitalFilterReqDto) throws Exception;
+    public List<HospitalRespDto> getHospitalList(
+            String department,
+            int page,
+            String userAddress,
+            boolean hospitalOpen,
+            boolean nightOpen,
+            boolean emergency
+    ) throws Exception;
     public boolean addAppointment(HospitalAppointmentReqDto hospitalAppointmentReqDto) throws Exception;
 }

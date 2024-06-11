@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.test.domain.user.UserRepository">
+    <select id="findByAuthId" parameterType="Long"
+            resultType="com.example.test.domain.user.User">
+        SELECT
+            *
+        FROM
+            users
+        WHERE
+            kakao_auth_id = #{authId};
+    </select>
+    <insert id="saveUser" parameterType="com.example.test.domain.user.User">
+        INSERT INTO users
+        VALUES (
+            0,
+            #{kakao_auth_id},
+            #{user_name},
+            #{user_email},
+            #{user_phone},
+            #{user_password},
+            #{user_nickname},
+            #{user_gender},
+            #{user_role},
+            NOW(),
+            NOW()
+        )
+    </insert>
+</mapper>

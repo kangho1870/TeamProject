@@ -3,17 +3,42 @@ import Category from "../../../components/common/Category";
 import styles from "../../../css/mypage/Mypage.module.css";
 import MypageArtilce from "./MypageArticle";
 import MypageMedicalHistory from "./MypageMedicalHistory";
+import { Outlet, useHref, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 
 
 function Mypage() {
+    const { title } = useParams();
+    const navigate = useNavigate();
+    let userId = 1;
     let [navTitle, setNavTitle] = useState(0);
-    const btnNum = ["게시글", "작성한 후기", "진료내역", "찜한 병원"];
+    const btnNum = ["articles", "appointment", "medicalHistory", "favoritesHospital"];
     let [clicked, setClicked] = useState(btnNum[0]);
     
     const toggleActive = (item) => {
         setClicked(item);
         setNavTitle(btnNum.indexOf(item));
+    };
+
+    useEffect(() => {
+        loadData();
+        if(title && btnNum.includes(title)) {
+            toggleActive(title);
+        }
+    }, [title]);
+
+    const loadData = async () => {
+        try {
+            const response = await axios.get(`/mypage/${title}`, {
+                headers: {
+                    'userId': userId
+                }
+            });
+            console.log(response.data);
+        } catch (error) {
+            console.error("There was an error loading the data!", error);
+        }
     };
 
     return (
@@ -50,9 +75,15 @@ function Mypage() {
                                     className={`${styles.btn} ${clicked === item ? styles.active : ""}`}
                                     onClick={() => {
                                         toggleActive(item);
+                                        navigate(`/mypage/${item}`);
                                     }}
                                 >
-                                    <span className={`${styles.btn} ${clicked === item ? styles.title : ""}`}>{item}</span>
+                                    <span className={`${styles.btn} ${clicked === item ? styles.title : ""}`}>
+                                        {item == 'articles' ? '게시글'
+                                            : item == 'appointment' ? '예약 내역'
+                                            : item == 'medicalHistory' ? '진료 내역'
+                                            : item == 'favoritesHospital' ? '찜한 병원' : ""}
+                                    </span>
                                 </button>
                             ))}
                         </div>
@@ -60,6 +91,9 @@ function Mypage() {
                     </div>
                     <div>
                         <div className={styles.contextArea}>
+                            <Outlet>
+                                
+                            </Outlet>
                             {navTitle == 0 ? <MypageArtilce></MypageArtilce>
                                 : navTitle == 2 ? <MypageMedicalHistory></MypageMedicalHistory>
                                 : null

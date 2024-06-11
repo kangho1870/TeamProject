@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Acount from './Acount.js';
 
 function Category() {
+    const code = new URL(window.location.href).searchParams.get("code");
+    console.log(code)
     const navigate = useNavigate();
     let [acountView, setAcountView] = useState(false);
 

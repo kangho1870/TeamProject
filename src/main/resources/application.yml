@@ -13,6 +13,10 @@ server:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
 spring:
+  security:
+    user:
+      name: test
+      password: 1234a
   mvc:
     static-path-pattern: /static/**
   datasource:
@@ -24,6 +28,10 @@ spring:
     password: 85061621Tld!
   thymeleaf:
     cache: false
+
+oauth:
+  kakao:
+    client-id: 0f429e5d9c11874df48c1325b0d9454e
 
 mybatis:
   mapper-locations:

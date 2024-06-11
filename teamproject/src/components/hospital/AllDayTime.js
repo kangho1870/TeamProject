@@ -56,11 +56,11 @@ function AllDayTime({ hospital }) {
                             </div>
                             <div className={styles.timeBox}>
                                 <h4 style={{color: "rgb(240, 62, 62)"}}>일</h4>
-                                <span className={styles.time}>확인 필요</span>
+                                <span className={styles.time}>{formatTime(operatingHours.SUNDAY) == "null~null" ? '확인 필요' : ""}</span>
                             </div>
                             <div className={styles.timeBox}>
                                 <h4 style={{color: "rgb(240, 62, 62)"}}>공휴일</h4>
-                                <span className={styles.time}>확인 필요</span>
+                                <span className={styles.time}>{formatTime(operatingHours.HOLIDAY) == "null~null" ? '확인 필요' : ""}</span>
                             </div>
                         </div>
                     </div>
